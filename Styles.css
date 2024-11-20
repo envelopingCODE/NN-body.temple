@@ -156,7 +156,7 @@ h1 {
     height: 100%;
     background-image: url("photos/pexels-cottonbro-767px.jpg");
     background-attachment: scroll;
-    background-position: % 50%;
+    background-position:50% 50%;
     background-size: 145%;
     filter: blur(2px); /* Apply the blur effect */
     z-index: -1; /* Ensure the pseudo-element is behind the content */
@@ -174,7 +174,7 @@ h1 {
     
 }
 
-#three {
+#finisher {
     background-image: url("photos/BTM scaledRetina.jpg");
     display: flex;
     flex-direction: column;
@@ -184,6 +184,162 @@ h1 {
 
    
 }
+
+#Thank-you-section
+ {
+    background-image: url("pexels-monstera-production-6620855-1.webp");
+    padding: 60px;
+    color: rgb(255, 255, 255);
+    max-width: 600px;
+    margin: auto;
+    font-size: x-large;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(30px); 
+    -webkit-backdrop-filter: blur(30px); 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-position: 50% 50%;
+    background-size: 100%;
+
+}
+
+#returnParagraph {
+
+font-size: 0.5em;
+display: block;
+flex-direction:row;
+text-align: center;
+padding: 10%;
+margin-left: -12%;
+}
+
+#club {
+    color: rgb(113, 206, 209);
+}
+
+
+#reviews-section {
+    background-image: url("pexels-monstera-production-6620855-1.webp");
+    color: rgb(255, 255, 255);
+    max-width: 600px;
+    margin: auto;
+    padding-top: 20%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(30px); 
+    -webkit-backdrop-filter: blur(30px); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-position: 50% 50%;
+    background-size: 100%;
+
+}
+
+.dark {
+    color: cadetblue;
+    margin: 6%;
+    display: inline;
+}
+
+#preLinkText {
+    color: rgb(11, 11, 11);
+    margin-left: 10%;
+}
+
+#reviews-section a {
+    color: white;
+    font-weight: 600;
+}
+
+
+#review-form {
+    margin-bottom: 20px;
+}
+
+#review-form input,
+#review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #44444495;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+}
+
+#review-form button {
+    padding: 10px;
+    background-color: #28a745;
+    color: whitesmoke;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#review-form button:hover {
+    background-color: #218838;
+}
+
+#reviews-list {
+    margin-top: 20px;
+}
+
+.review-item {
+    background-color: #3a3c3b9e;
+    color: white;
+    font-size: 1.1em;
+    padding: 40px;
+    border-radius: 26px;
+    margin-bottom: 10px;
+    position: relative;
+
+    
+}
+
+.review-item .delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: whitesmoke;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+
+.review-item .delete-btn:hover {
+    background-color: #c82333;
+}
+
+#star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ccc; /* Default color (unselected) */
+    cursor: pointer;
+}
+
+.star.selected {
+    color: #ffc107; /* Gold color for selected stars */
+}
+
+.star:hover {
+    color: #ff9900; /* Hover color */
+}
+
+
+
 
 #four {
     background-image: url("pexels-tom-fisk-5992512(1).webp");
@@ -245,6 +401,129 @@ background-attachment: fixed;
 * {
     box-sizing: border-box;
 }
+
+/* Carousel Wrapper */
+.carousel {
+    position:relative ;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center carousel in its container */
+    justify-self: center;
+    margin: auto;
+    min-width: 300px;
+    max-width:350px; /* Optional: Restrict carousel width */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.117); /* Optional: Add some contrast background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+}
+
+.centered {
+    margin: auto;
+}
+
+#reviews-section a {
+    color: #020303;
+    font-weight: 900;
+}
+
+.carousel-track-container {
+    overflow-y: auto; /* Allows vertical scrolling */
+    scroll-behavior: smooth; /* Enables smooth scrolling */
+    max-height: 540px; /* Limit height for scrolling */
+    position: relative;
+    padding: 4%;
+  
+        
+}
+
+
+/* Carousel Track */
+.carousel-track {
+position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Add space between cards */
+    transition: transform 0.4s ease-in-out; /* Smooth sliding animation */
+    will-change: transform; /* Optimizes animation performance */
+
+}
+
+/*
+
+.review-item {
+    position: relative;
+    flex: 0 0 30%; 
+    max-width: 0%;
+    background-color: #77a5a193;
+    color: white;
+    font-size: 1em;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    z-index: 1; 
+} 
+*/
+
+
+
+/* General Button Styling */
+button.arrow-up, button.arrow-down {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: white; /* White arrow icons */
+    border: none; /* Remove default button border */
+    border-radius: 50%; /* Circular buttons */
+    width: 50px; /* Set button size */
+    height: 50px; /* Set button size */
+    display: flex; /* Center align arrow inside button */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Hover and Focus Effects */
+button.arrow-up:hover, button.arrow-down:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Light background on hover */
+    color: black; /* Dark arrow icons on hover */
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+button.arrow-up:focus, button.arrow-down:focus {
+    outline: none; /* Remove focus outline */
+    box-shadow: 0px 0px 8px 2px rgba(0, 128, 255, 0.6); /* Glow effect on focus */
+}
+
+/* Positioning (optional, adjust as needed) */
+button.arrow-up {
+    position: absolute;
+    top: 10px; /* Adjust for your layout */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+}
+
+button.arrow-down {
+    position: absolute;
+    bottom: 10px; /* Adjust for your layout */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+}
+
+
+
+
+/* Responsive Layout: Adjust for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .review-item {
+        flex: 0 0 100%; /* Show one card at a time for smaller screens */
+        max-width: 100%;
+        
+    }
+}
+
 
 
 /* Card container */
