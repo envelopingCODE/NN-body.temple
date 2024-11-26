@@ -186,24 +186,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const upArrow = document.querySelector('.arrow-up'); // Adjust selector if needed
-        const downArrow = document.querySelector('.arrow-down'); // Adjust selector if needed
-        const reviewContainer = document.querySelector('.carousel-track-container');
+document.addEventListener('DOMContentLoaded', () => {
+  const upArrow = document.querySelector('.arrow-up'); // Adjust selector if needed
+  const downArrow = document.querySelector('.arrow-down'); // Adjust selector if needed
+  const reviewContainer = document.querySelector('.carousel-track-container');
 
-        // Scroll up
-        upArrow.addEventListener('click', () => {
-            reviewContainer.scrollBy({
-                top: -400, // Adjust the scroll amount
-                behavior: 'smooth',
-            });
-        });
+  // Scroll up
+  if (upArrow) {
+      upArrow.addEventListener('click', () => {
+          if (reviewContainer) {
+              reviewContainer.scrollBy({
+                  top: -400, // Adjust the scroll amount
+                  behavior: 'smooth',
+              });
+          }
+      });
+  }
 
-        // Scroll down
-        downArrow.addEventListener('click', () => {
-            reviewContainer.scrollBy({
-                top: 400, // Adjust the scroll amount
-                behavior: 'smooth',
-            });
-        });
-    });
+  // Scroll down
+  if (downArrow) {
+      downArrow.addEventListener('click', () => {
+          if (reviewContainer) {
+              reviewContainer.scrollBy({
+                  top: 400, // Adjust the scroll amount
+                  behavior: 'smooth',
+              });
+          }
+      });
+  }
+});
