@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (name && review && selectedRating) {
       try {
-        const response = await fetch("https://railway.com/project/b4664e09-4320-4760-b2a7-e19b4be03b05/submit", {
+        const response = await fetch("body-temple-reviews-production.up.railway.app/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // **Fetch Reviews**
   async function fetchReviews() {
     try {
-      const response = await fetch("https://railway.com/project/b4664e09-4320-4760-b2a7-e19b4be03b05/reviews");
+      const response = await fetch("body-temple-reviews-production.up.railway.app/reviews");
       const reviews = await response.json();
       displayReviews(reviews);
     } catch (error) {
