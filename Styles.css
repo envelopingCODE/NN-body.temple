@@ -123,8 +123,19 @@ a:hover {
 h1 {
     font-size: 1.8em;
     text-shadow: #333333 0px 3px 5px;
-    margin: 10%;
-    text-decoration:underline cadetblue;
+    text-decoration:underline cadetblue;    
+}
+
+#submit-h1 {
+
+        font-size: 1.7em;
+        padding-top: 0%;
+        text-align: center;
+        padding-bottom: 10%;
+        padding-left: 0%;
+        padding-right: 0%;
+        margin-left: 0%;
+        margin-right: 0%;
     
 }
 
@@ -418,10 +429,7 @@ h1 {
     margin-top: 4%;
 }
 
-h1 {
-    margin-top: 20%;
-    margin-bottom: 0%;
-}
+
 /*.parallax-image {
  background-image: url('pexels-alessandra-20449164(1).webp');
   background-size: cover;
@@ -766,17 +774,6 @@ color: blue;
     cursor: pointer;          /* Allow clicking on label to toggle checkbox */
 }
 
-/* Info Box Styling */
-.info-box {
-    margin-top: 5px;          /* Add a little separation from the label */
-    background-color: #ade2cadd;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 12px;
-    color: #ffffff;
-    max-width: 300px;
-}
 
 /* General styling for checkbox groups */
 .checkbox-group {
@@ -862,3 +859,106 @@ color: blue;
     background: linear-gradient(135deg, rgb(255, 100, 200), rgb(100, 0, 255));
     box-shadow: 0 4px 12px rgba(255, 100, 200, 0.5);
 }
+
+
+
+
+        /* Form */
+        #submit-section {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #review-form {
+            background: #1f1f1fc4;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        #review-form input, 
+        #review-form textarea {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #333333;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        
+        #review-form input:focus, 
+        #review-form textarea:focus {
+            outline: 2px solid #00ffd0;
+        }
+        
+        /* Stars */
+        #star-rating {
+            display: flex;
+            gap:7px;
+            margin-bottom: 2rem;
+        }
+        
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .star:hover,
+        .star.active {
+            color: #ff9800;
+        }       
+        
+                
+        
+            #review-form {
+                padding: 2rem;
+            }
+    
+   /* Info Box Container */
+    .info-box {
+    background-color: #1f1f1f;  /* Dark background for contrast */
+    color: #5ad796d1;  /* White text for readability */
+    padding: 20px 25px;  /* Adequate padding */
+    border-radius: 8px;  /* Rounded corners */
+    border-left: 5px solid #00ff6e;  /* Bold accent line on the left */
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
+    }
+    
+    /* Hover Effect */
+    .info-box:hover {
+    transform: translateY(-5px);  /* Slightly lift up the info box */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);  /* Enhanced shadow on hover */
+    }
+    
+    /* Info Box Title */
+    .info-box h4 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;  /* Slightly larger font size for the title */
+    color: #ff9800;  /* Accent color for the title */
+    margin-bottom: 10px;
+    }
+    
+    /* Info Box Content */
+    .info-box p {
+    margin: 0;
+    font-size: 12px;  /* Clear readable text */
+    color: #ccc;  /* Light grey for the content */
+    }
+    
+    /* For links inside InfoBox */
+    .info-box a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: 500;
+    }
+    
+    .info-box a:hover {
+    text-decoration: underline;
+    }
