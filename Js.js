@@ -212,11 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
+/*
 document.querySelectorAll('.star').forEach(star => {
   star.addEventListener('click', () => {
       document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
       star.classList.add('active');
   });
 });
-
+*/
