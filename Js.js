@@ -112,22 +112,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // **Display Reviews Dynamically**
   function displayReviews(reviews) {
     reviewsList.innerHTML = ""; // Clear current reviews
-    reviews.forEach((review) => {
-      const reviewItem = document.createElement("div");
-      reviewItem.classList.add("review-item");
 
-      const clubMemberLabel = review.subscribe
-        ? '<p id="club">(Club Member)</p>'
-        : "";
+    // Check if reviews is an array and has at least one review
+    if (Array.isArray(reviews) && reviews.length === 0) {
+      reviewsList.innerHTML = "<p>You can be the first to submit a review!</p>";
+    } else if (Array.isArray(reviews) && reviews.length > 0) {
+      // Loop through reviews and display each one
+      reviews.forEach((review) => {
+        const reviewItem = document.createElement("div");
+        reviewItem.classList.add("review-item");
 
-      reviewItem.innerHTML = `
-        <div class="star-rating-display">${renderStars(review.rating)}</div>
-        <p>${review.review}</p>
-        <h4>${review.name}</h4>
-        ${clubMemberLabel}
-      `;
-      reviewsList.appendChild(reviewItem);
-    });
+        const clubMemberLabel = review.subscribe
+          ? '<p id="club">(Club Member)</p>'
+          : "";
+
+        reviewItem.innerHTML = `
+          <div class="star-rating-display">${renderStars(review.rating)}</div>
+          <p>${review.review}</p>
+          <h4>${review.name}</h4>
+          ${clubMemberLabel}
+        `;
+        reviewsList.appendChild(reviewItem);
+      });
+    }
   }
 
   // **Render Stars**
@@ -143,49 +150,26 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchReviews() {
     try {
       const response = await fetch("https://body-temple-reviews-production.up.railway.app/reviews");
-      const reviews = await response.json();
-      displayReviews(reviews);
+      const data = await response.json();
+      
+      // Check if 'reviews' exists and is an array before passing it to displayReviews
+      if (data && Array.isArray(data.reviews)) {
+        displayReviews(data.reviews);
+      } else {
+        console.error("Invalid reviews data:", data);
+        displayReviews([]); // Display no reviews if the data is not valid
+      }
     } catch (error) {
       console.error("Error fetching reviews:", error);
+      displayReviews([]); // Handle the case when there's an error fetching reviews
     }
-  }
-
-  // **Initialize Carousel**
-  function setupCarousel(reviews) {
-    const track = document.querySelector(".carousel-track");
-    const prevButton = document.querySelector(".carousel-control.prev");
-    const nextButton = document.querySelector(".carousel-control.next");
-    const totalReviews = reviews.length;
-    const reviewsPerView = 3;
-    const trackHeight = (totalReviews * 100) / reviewsPerView;
-
-    track.style.height = `${trackHeight}%`;
-
-    function updateCarousel() {
-      const offset = currentIndex * (100 / reviewsPerView);
-      track.style.transform = `translateY(-${offset}%)`;
-    }
-
-    prevButton?.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      }
-    });
-
-    nextButton?.addEventListener("click", () => {
-      if (currentIndex < Math.ceil(totalReviews / reviewsPerView) - 1) {
-        currentIndex++;
-        updateCarousel();
-      }
-    });
   }
 
   // Fetch and Display Reviews
   fetchReviews();
 });
 
-
+// Additional functionality for the carousel (if required)
 document.addEventListener('DOMContentLoaded', () => {
   const upArrow = document.querySelector('.arrow-up'); // Adjust selector if needed
   const downArrow = document.querySelector('.arrow-down'); // Adjust selector if needed
@@ -193,25 +177,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Scroll up
   if (upArrow) {
-      upArrow.addEventListener('click', () => {
-          if (reviewContainer) {
-              reviewContainer.scrollBy({
-                  top: -400, // Adjust the scroll amount
-                  behavior: 'smooth',
-              });
-          }
-      });
+    upArrow.addEventListener('click', () => {
+      if (reviewContainer) {
+        reviewContainer.scrollBy({
+          top: -400, // Adjust the scroll amount
+          behavior: 'smooth',
+        });
+      }
+    });
   }
 
   // Scroll down
   if (downArrow) {
-      downArrow.addEventListener('click', () => {
-          if (reviewContainer) {
-              reviewContainer.scrollBy({
-                  top: 400, // Adjust the scroll amount
-                  behavior: 'smooth',
-              });
-          }
-      });
+    downArrow.addEventListener('click', () => {
+      if (reviewContainer) {
+        reviewContainer.scrollBy({
+          top: 400, // Adjust the scroll amount
+          behavior: 'smooth',
+        });
+      }
+    });
   }
 });
