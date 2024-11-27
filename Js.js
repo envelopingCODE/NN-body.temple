@@ -210,10 +210,11 @@ document.querySelectorAll('input, textarea').forEach((field) => {
 });
 
 
-
+/*
 document.querySelectorAll('.star').forEach(star => {
   star.addEventListener('click', () => {
       document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
       star.classList.add('active');
   });
 });
+*/

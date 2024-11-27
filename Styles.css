@@ -319,6 +319,12 @@ h1 {
     border-radius: 4px;
 }
 
+#button-container {
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+}
+
 #review-form button {
     padding: 10px;
     background-color: rgb(0, 255, 200);
@@ -326,6 +332,7 @@ h1 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  
 }
 
 #review-form button:hover {
@@ -867,6 +874,10 @@ color: blue;
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        #submit-review{
+            align-self: center;
         }
         
         #review-form {
