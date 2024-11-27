@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
     <style>/* Base styles */
         body {
             font-family: 'Inter', sans-serif;
@@ -15,7 +14,7 @@
             margin: 0;
             padding: 0;
         }
-   
+    
         h1 {
             font-size: 1.7em;
             padding-top: 0%;
@@ -83,79 +82,105 @@
             #review-form {
                 padding: 2rem;
             }
-
+    
             /* Info Box Container */
-.info-box {
-background-color: #1f1f1f;  /* Dark background for contrast */
-color: #5ad796d1;  /* White text for readability */
-padding: 20px 25px;  /* Adequate padding */
-border-radius: 8px;  /* Rounded corners */
-border-left: 5px solid #00ff6e;  /* Bold accent line on the left */
-margin-top: 10px;
-font-size: 14px;
-line-height: 1.6;
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  /* Subtle shadow for depth */
-transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
-}
-
-/* Hover Effect */
-.info-box:hover {
-transform: translateY(-5px);  /* Slightly lift up the info box */
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);  /* Enhanced shadow on hover */
-}
-
-/* Info Box Title */
-.info-box h4 {
-margin: 0;
-font-weight: 600;
-font-size: 16px;  /* Slightly larger font size for the title */
-color: #ff9800;  /* Accent color for the title */
-margin-bottom: 10px;
-}
-
-/* Info Box Content */
-.info-box p {
-margin: 0;
-font-size: 12px;  /* Clear readable text */
-color: #ccc;  /* Light grey for the content */
-}
-
-/* For links inside InfoBox */
-.info-box a {
-color: #ff9800;
-text-decoration: none;
-font-weight: 500;
-}
-
-.info-box a:hover {
-text-decoration: underline;
-}
+    .info-box {
+    background-color: #1f1f1f;  /* Dark background for contrast */
+    color: #5ad796d1;  /* White text for readability */
+    padding: 20px 25px;  /* Adequate padding */
+    border-radius: 8px;  /* Rounded corners */
+    border-left: 5px solid #00ff6e;  /* Bold accent line on the left */
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
+    }
+    
+    /* Hover Effect */
+    .info-box:hover {
+    transform: translateY(-5px);  /* Slightly lift up the info box */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);  /* Enhanced shadow on hover */
+    }
+    
+    /* Info Box Title */
+    .info-box h4 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;  /* Slightly larger font size for the title */
+    color: #ff9800;  /* Accent color for the title */
+    margin-bottom: 10px;
+    }
+    
+    /* Info Box Content */
+    .info-box p {
+    margin: 0;
+    font-size: 12px;  /* Clear readable text */
+    color: #ccc;  /* Light grey for the content */
+    }
+    
+    /* For links inside InfoBox */
+    .info-box a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: 500;
+    }
+    
+    .info-box a:hover {
+    text-decoration: underline;
+    }
         
         </style>
+
+   
 </head>
 <body>
     <div id="progress-bar"></div>
     <div id="scroll-container">
-        <header>
-
-                <img id="logo" src="NN_logo_alt_black.svg" alt="Naturally Nate logo">
-            <button class="menu-bttn open" id="open-menu" aria-label="Open menu">
-                <span class="menu-icon">
-                    <span class="lines"></span>
-                    <span class="lines"></span>
-                    <span class="lines"></span>
+        <header> 
+            <img id="logo" src="NN_logo_alt_black.svg" alt="Naturally Nate logo">
+                 <!-- Menu button -->
+        
+                <button class="menu-bttn open" id="open-menu">
+        <span class="menu-icon">
+                <span class="lines">
                 </span>
-            </button>
-            <nav id="nav-menu">
-                <button class="menu-bttn-close" id="close-menu" aria-label="Close menu">
-                    <img class="X" src="image(41).png" alt="Close menu">
+                <span class="lines">
+                </span>
+                <span class="lines">
+                </span>
+        
+        </span>
+               <span class="menu-text"></span> 
                 </button>
+        
+                <!-- Nav Menu sections-->
+                <nav id="nav-menu">
+                   
+                <button class="menu-bttn-close" id="close-menu">
+                        
+        
+                        <img class="X" src="image(41).png" alt="x">
+        
+                <span class="menu-text"></span>
+               
+        
+             </button>
+        
                 <ul>
-                    <li><a class="navLinks" href="index.html">Home</a></li>
-                    <li><a class="navLinks" href="index.html#two">Treatments Overview</a></li>
-                    <li><a class="navLinks" href="index.html#reviews-section">Reviews</a></li>
+                    <li> <a class="navLinks" href="index.html"> NN's body.temple  </a></li>
+        
+                    <li> <a class="navLinks" href="index.html#two"> Treatments Overview  </a></li>
+        
+                    
+                    <li> <a class="navLinks" href="index.html#reviews-section"> Reviews  </a></li>
+        
+                    <!--  <li> <a class="navLinks" href="#"> Explore massages </a></li>
+        
+                    <li> <a class="navLinks" href="#">Get in touch</a></li>  */-->
                 </ul>
-            </nav>
+                </nav>
+        
         </header>
         <div id="submit-section">
             <div id="review-form">
@@ -193,4 +218,5 @@ text-decoration: underline;
     </div>
     <script src="js.js"></script>
 </body>
+
 </html>
