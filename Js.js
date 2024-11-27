@@ -5,7 +5,6 @@ const openMenuButtonEl = document.getElementById("open-menu");
 const closeMenuButtonEl = document.getElementById("close-menu");
 const navMenuEl = document.getElementById("nav-menu");
 const submitButton = document.getElementById("submit-review");
-const reviewsList = document.getElementById("reviews-list");
 const reviewerName = document.getElementById("reviewer-name");
 const reviewText = document.getElementById("review-text");
 const starRatingContainer = document.getElementById("star-rating");
@@ -109,68 +108,73 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // **Display Reviews Dynamically**
-  function displayReviews(reviews) {
-    reviewsList.innerHTML = ""; // Clear current reviews
+  // **Check if reviews-list exists**
+  const reviewsList = document.getElementById("reviews-list");
 
-    // Check if reviews is an array and has at least one review
-    if (Array.isArray(reviews) && reviews.length === 0) {
-      reviewsList.innerHTML = "<p>You can be the first to submit a review!</p>";
-    } else if (Array.isArray(reviews) && reviews.length > 0) {
-      // Loop through reviews and display each one
-      reviews.forEach((review) => {
-        const reviewItem = document.createElement("div");
-        reviewItem.classList.add("review-item");
+  if (reviewsList) {
+    // **Display Reviews Dynamically**
+    function displayReviews(reviews) {
+      reviewsList.innerHTML = ""; // Clear current reviews
 
-        const clubMemberLabel = review.subscribe
-          ? '<p id="club">(Club Member)</p>'
-          : "";
+      // Check if reviews is an array and has at least one review
+      if (Array.isArray(reviews) && reviews.length === 0) {
+        reviewsList.innerHTML = "<p>You can be the first to submit a review!</p>";
+      } else if (Array.isArray(reviews) && reviews.length > 0) {
+        // Loop through reviews and display each one
+        reviews.forEach((review) => {
+          const reviewItem = document.createElement("div");
+          reviewItem.classList.add("review-item");
 
-        reviewItem.innerHTML = `
-          <div class="star-rating-display">${renderStars(review.rating)}</div>
-          <p>${review.review}</p>
-          <h4>${review.name}</h4>
-          ${clubMemberLabel}
-        `;
-        reviewsList.appendChild(reviewItem);
-      });
-    }
-  }
+          const clubMemberLabel = review.subscribe
+            ? '<p id="club">(Club Member)</p>'
+            : "";
 
-  // **Render Stars**
-  function renderStars(rating) {
-    let starsHTML = "";
-    for (let i = 1; i <= 5; i++) {
-      starsHTML += i <= rating ? "&#9733;" : "&#9734;"; // Filled or empty star
-    }
-    return starsHTML;
-  }
-
-  // **Fetch Reviews**
-  async function fetchReviews() {
-    try {
-      const response = await fetch("https://body-temple-reviews-production.up.railway.app/reviews");
-      const data = await response.json();
-      
-      // Check if 'reviews' exists and is an array before passing it to displayReviews
-      if (data && Array.isArray(data.reviews)) {
-        displayReviews(data.reviews);
-      } else {
-        console.error("Invalid reviews data:", data);
-        displayReviews([]); // Display no reviews if the data is not valid
+          reviewItem.innerHTML = `
+            <div class="star-rating-display">${renderStars(review.rating)}</div>
+            <p>${review.review}</p>
+            <h4>${review.name}</h4>
+            ${clubMemberLabel}
+          `;
+          reviewsList.appendChild(reviewItem);
+        });
       }
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-      displayReviews([]); // Handle the case when there's an error fetching reviews
     }
+
+    // **Render Stars**
+    function renderStars(rating) {
+      let starsHTML = "";
+      for (let i = 1; i <= 5; i++) {
+        starsHTML += i <= rating ? "&#9733;" : "&#9734;"; // Filled or empty star
+      }
+      return starsHTML;
+    }
+
+    // **Fetch Reviews**
+    async function fetchReviews() {
+      try {
+        const response = await fetch("https://body-temple-reviews-production.up.railway.app/reviews");
+        const data = await response.json();
+
+        // Check if 'reviews' exists and is an array before passing it to displayReviews
+        if (data && Array.isArray(data.reviews)) {
+          displayReviews(data.reviews);
+        } else {
+          console.error("Invalid reviews data:", data);
+          displayReviews([]); // Display no reviews if the data is not valid
+        }
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+        displayReviews([]); // Handle the case when there's an error fetching reviews
+      }
+    }
+
+    // Fetch and Display Reviews
+    fetchReviews();
+  } else {
+    console.log("Reviews list not found in the DOM.");
   }
 
-  // Fetch and Display Reviews
-  fetchReviews();
-});
-
-// Additional functionality for the carousel (if required)
-document.addEventListener('DOMContentLoaded', () => {
+  // Additional functionality for the carousel (if required)
   const upArrow = document.querySelector('.arrow-up'); // Adjust selector if needed
   const downArrow = document.querySelector('.arrow-down'); // Adjust selector if needed
   const reviewContainer = document.querySelector('.carousel-track-container');
@@ -198,23 +202,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
 
-
-document.querySelectorAll('input, textarea').forEach((field) => {
-  field.addEventListener('focus', (event) => {
-    setTimeout(() => {
-      event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 300); // Delay to ensure keyboard is fully open
+  document.querySelectorAll('input, textarea').forEach((field) => {
+    field.addEventListener('focus', (event) => {
+      setTimeout(() => {
+        event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300); // Delay to ensure keyboard is fully open
+    });
   });
 });
 
 
-/*
 document.querySelectorAll('.star').forEach(star => {
   star.addEventListener('click', () => {
       document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
       star.classList.add('active');
   });
 });
-*/
+
