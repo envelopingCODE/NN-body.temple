@@ -620,9 +620,7 @@ button.arrow-down {
 /* Card title */
 .card-title {
     font-size: 38px;
-
     font-weight: 1000;
-    margin-bottom: 8px;
     color: rgb(128, 255, 212);
     text-shadow: #333333 3px 6px 3px
 
@@ -630,7 +628,8 @@ button.arrow-down {
 
 /* Card text */
 .card-text {
-    padding-top: 10%;
+    padding-top: 0%;
+    margin: auto;
     font-size: 16px;
     line-height: 1.4;
     font-weight: 200;
@@ -684,7 +683,7 @@ header {
 
 #demo { text-align: center; text-shadow: #333333 3px 4px 2px; margin: 10%; color: aliceblue; font-weight: 800; }
 
-#arrow { scale: 0.04; position: absolute;margin: 30%; margin-top: 40%;  transform: rotate(90deg);}
+#arrow { scale: 0.04; position: absolute;margin: 30%; margin-top: 27%;  transform: rotate(90deg);}
 
 
 /* progress bar */
