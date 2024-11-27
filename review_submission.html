@@ -7,137 +7,138 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div id="progress-bar"></div>
-    <div id="scroll-container">
 
-        <style>/* Base styles */
-            body {
-                font-family: 'Inter', sans-serif;
-                color: #ffffff;
-                margin: 0;
-                padding: 0;
-            }
-       
-            h1 {
-                font-size: 1.7em;
-                padding-top: 0%;
-                text-align: center;
-                padding-bottom: 10%;
-                padding-left: 0%;
-                padding-right: 0%;
-                margin-left: 0%;
-                margin-right: 0%;
-            }
-                           
-            .navLinks:hover {
-                text-decoration: underline;
-            }
-            
-            /* Form */
-            #submit-section {
-                padding: 2rem;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-            
+    <style>/* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+   
+        h1 {
+            font-size: 1.7em;
+            padding-top: 0%;
+            text-align: center;
+            padding-bottom: 10%;
+            padding-left: 0%;
+            padding-right: 0%;
+            margin-left: 0%;
+            margin-right: 0%;
+        }
+                       
+        .navLinks:hover {
+            text-decoration: underline;
+        }
+        
+        /* Form */
+        #submit-section {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #review-form {
+            background: #1f1f1fc4;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        #review-form input, 
+        #review-form textarea {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #333333;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        
+        #review-form input:focus, 
+        #review-form textarea:focus {
+            outline: 2px solid #00ffd0;
+        }
+        
+        /* Stars */
+        #star-rating {
+            display: flex;
+            gap:7px;
+            margin-bottom: 2rem;
+        }
+        
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .star:hover,
+        .star.active {
+            color: #ff9800;
+        }       
+        
+                
+        
             #review-form {
-                background: #1f1f1fc4;
                 padding: 2rem;
-                border-radius: 10px;
             }
-            
-            #review-form input, 
-            #review-form textarea {
-                width: 100%;
-                margin-bottom: 1rem;
-                padding: 0.8rem;
-                background: #333333;
-                border: none;
-                color: #ffffff;
-                border-radius: 5px;
-            }
-            
-            #review-form input:focus, 
-            #review-form textarea:focus {
-                outline: 2px solid #00ffd0;
-            }
-            
-            /* Stars */
-            #star-rating {
-                display: flex;
-                gap:7px;
-                margin-bottom: 2rem;
-            }
-            
-            .star {
-                font-size: 2rem;
-                cursor: pointer;
-                color: #777;
-            }
-            
-            .star:hover,
-            .star.active {
-                color: #ff9800;
-            }       
-            
-                    
-            
-                #review-form {
-                    padding: 1.5 rem;
-                }
 
-                /* Info Box Container */
+            /* Info Box Container */
 .info-box {
-    background-color: #1f1f1f;  /* Dark background for contrast */
-    color: #5ad796d1;  /* White text for readability */
-    padding: 20px 25px;  /* Adequate padding */
-    border-radius: 8px;  /* Rounded corners */
-    border-left: 5px solid #00ff6e;  /* Bold accent line on the left */
-    margin-top: 10px;
-    font-size: 14px;
-    line-height: 1.6;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  /* Subtle shadow for depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
+background-color: #1f1f1f;  /* Dark background for contrast */
+color: #5ad796d1;  /* White text for readability */
+padding: 20px 25px;  /* Adequate padding */
+border-radius: 8px;  /* Rounded corners */
+border-left: 5px solid #00ff6e;  /* Bold accent line on the left */
+margin-top: 10px;
+font-size: 14px;
+line-height: 1.6;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  /* Subtle shadow for depth */
+transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
 }
 
 /* Hover Effect */
 .info-box:hover {
-    transform: translateY(-5px);  /* Slightly lift up the info box */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);  /* Enhanced shadow on hover */
+transform: translateY(-5px);  /* Slightly lift up the info box */
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);  /* Enhanced shadow on hover */
 }
 
 /* Info Box Title */
 .info-box h4 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 16px;  /* Slightly larger font size for the title */
-    color: #ff9800;  /* Accent color for the title */
-    margin-bottom: 10px;
+margin: 0;
+font-weight: 600;
+font-size: 16px;  /* Slightly larger font size for the title */
+color: #ff9800;  /* Accent color for the title */
+margin-bottom: 10px;
 }
 
 /* Info Box Content */
 .info-box p {
-    margin: 0;
-    font-size: 12px;  /* Clear readable text */
-    color: #ccc;  /* Light grey for the content */
+margin: 0;
+font-size: 12px;  /* Clear readable text */
+color: #ccc;  /* Light grey for the content */
 }
 
 /* For links inside InfoBox */
 .info-box a {
-    color: #ff9800;
-    text-decoration: none;
-    font-weight: 500;
+color: #ff9800;
+text-decoration: none;
+font-weight: 500;
 }
 
 .info-box a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
-            
-            </style>
+        
+        </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    <div id="scroll-container">
         <header>
-            <img id="logo" src="NN_logo_alt_black.svg" alt="Naturally Nate logo">
+
+                <img id="logo" src="NN_logo_alt_black.svg" alt="Naturally Nate logo">
             <button class="menu-bttn open" id="open-menu" aria-label="Open menu">
                 <span class="menu-icon">
                     <span class="lines"></span>
@@ -162,7 +163,7 @@
                 <input type="text" id="reviewer-name" placeholder="Your Name" required aria-label="Name">
                 <input type="email" name="email" placeholder="Your Email" aria-label="Email">
                 <textarea id="review-text" placeholder="Share how you felt after your massage in a sentence or two ..  " required aria-label="Review"></textarea>
-                <div id="star-rating" role="radiogroup" aria-labelledby="rating">
+                <div id="star-rating" role="radiogroup" aria-labelledby="star-rating">
                     <span class="star" data-value="1" tabindex="0">&#9733;</span>
                     <span class="star" data-value="2" tabindex="0">&#9733;</span>
                     <span class="star" data-value="3" tabindex="0">&#9733;</span>
