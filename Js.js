@@ -208,3 +208,12 @@ document.querySelectorAll('input, textarea').forEach((field) => {
     }, 300); // Delay to ensure keyboard is fully open
   });
 });
+
+
+
+document.querySelectorAll('.star').forEach(star => {
+  star.addEventListener('click', () => {
+      document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+      star.classList.add('active');
+  });
+});
