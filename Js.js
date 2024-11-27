@@ -199,3 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+document.querySelectorAll('input, textarea').forEach((field) => {
+  field.addEventListener('focus', (event) => {
+    setTimeout(() => {
+      event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300); // Delay to ensure keyboard is fully open
+  });
+});
