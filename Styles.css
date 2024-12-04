@@ -232,11 +232,9 @@ h1 {
 #Thank-you-section
  {
     background-image: url("pexels-monstera-production-6620855-1.webp");
-    padding: 20%;
     color: rgb(255, 255, 255);
     max-width: 600px;
     margin: auto;
-    font-size: x-large;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(30px); 
@@ -250,6 +248,13 @@ h1 {
     font-size: 3.5em;
      text-shadow: #333333 0px 3px 5px;
  
+}
+
+.thank-you {
+    margin: auto;
+    padding: auto;
+    margin-left: 10%;
+    margin-top: 50%;
 }
 
 
