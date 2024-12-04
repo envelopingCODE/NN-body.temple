@@ -57,12 +57,12 @@
             </nav>
         
         </header>
-        <div id="submit-section">
+        <div id="submit-section" class="cascade">
             <div id="review-form">
-                <h1 id="submit-h1">Submit Your Review</h1>
-                <input type="text" id="reviewer-name" placeholder="Your Name" required aria-label="Name">
-                <input type="email" name="email" placeholder="Your Email" aria-label="Email">
-                <textarea id="review-text" placeholder="Share how you felt after your massage ..  " required aria-label="Review"></textarea>
+                <h1 id="submit-h1" class="cascade-item">Submit Your Review</h1>
+                <input type="text" id="reviewer-name" class="cascade-item" placeholder="Your Name" required aria-label="Name">
+                <input type="email" name="email" class="cascade-item" placeholder="Your Email" aria-label="Email">
+                <textarea id="review-text" class="cascade-item" placeholder="Share how you felt after your massage ..  " required aria-label="Review"></textarea>
                 <div id="star-rating" role="radiogroup" aria-labelledby="star-rating">
                     <span class="star" data-value="1" tabindex="0">&#9733;</span>
                     <span class="star" data-value="2" tabindex="0">&#9733;</span>
@@ -70,22 +70,22 @@
                     <span class="star" data-value="4" tabindex="0">&#9733;</span>
                     <span class="star" data-value="5" tabindex="0">&#9733;</span>
                 </div>
-                <div class="checkbox-group">
+                <div class="checkbox-group cascade" >
                     <label class="custom-checkbox">
                         <input type="checkbox" id="opt-in" name="optIn" aria-label="Join the Member's Club">
                         <span class="checkmark"></span>
                         Join the NN Member's Club
                     </label>
-                    <p class="info-box">Join for rare exclusive member promos, and a 5% permanent reduction on rates* </p>
+                    <p class="info-box cascade-item ">Join for rare exclusive member promos, and a 5% permanent reduction on rates* </p>
 
                 </div>
-                <div class="checkbox-group">
+                <div class="checkbox-group cascade">
                     <label class="custom-checkbox">
                         <input type="checkbox" id="privacy-policy" required aria-label="Privacy policy agreement">
                         <span class="checkmark"></span>
                         I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.
                     </label>
-                    <p class="info-box">We only collect your email if you subscribe to our club. No cookies or tracking.</p>
+                    <p class="info-box cascade-item">We only collect your email if you subscribe to our club. No cookies or tracking.</p>
                 </div>
                 <div id="button-container">
                     <button id="submit-review">Submit Review</button>

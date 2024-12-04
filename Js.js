@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Trigger fade-in animation
+        // Trigger fade-in animation only if it hasn't already triggered this time
         entry.target.classList.add("visible");
 
-        // For cascading items
+        // For cascading items (if they exist within the section)
         if (entry.target.classList.contains("cascade")) {
           const items = entry.target.querySelectorAll(".cascade-item");
           items.forEach((item, index) => {
@@ -33,6 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
               item.style.opacity = 1;
               item.style.transform = "translateY(0)";
             }, index * 200); // Add delay for cascading effect
+          });
+        }
+      } else {
+        // Optionally, remove the "visible" class when section leaves the viewport,
+        // so the animation can trigger again the next time the section is scrolled into view.
+        entry.target.classList.remove("visible");
+
+        // Reset cascade items if needed
+        if (entry.target.classList.contains("cascade")) {
+          const items = entry.target.querySelectorAll(".cascade-item");
+          items.forEach((item) => {
+            item.style.opacity = 0;
+            item.style.transform = "translateY(50px)"; // Reset position if necessary
           });
         }
       }
@@ -44,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 });
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -92,8 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     returnToTopButton.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    
+      // Optional: Add a slight delay to avoid any page jumps caused by layout changes
+      setTimeout(() => {
+        // Additional actions can be placed here if needed
+      }, 500); // Adjust delay time if necessary
     });
-  }
+  };    
 
   // **Star Rating**
   function updateStarSelection() {
