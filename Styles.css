@@ -232,7 +232,7 @@ h1 {
 #Thank-you-section
  {
     background-image: url("pexels-monstera-production-6620855-1.webp");
-    padding: 60px;
+    padding: 20%;
     color: rgb(255, 255, 255);
     max-width: 600px;
     margin: auto;
@@ -246,7 +246,10 @@ h1 {
     justify-content: space-around;
     background-position: 50% 50%;
     background-size: 100%;
-
+    font-family:YourHandWrittenFont;
+    font-size: 3.5em;
+     text-shadow: #333333 0px 3px 5px;
+ 
 }
 
 
@@ -758,9 +761,19 @@ header {
 #returnParagraph a {
 
     font-size: 0.7em;
-    color: #ffffff;
+    color: #ffffffd2;
     font-weight: 1000;
+
     }
+
+    #returnParagraph {
+
+        color: #ffffff;
+        font-weight: 1000;
+        margin: auto;
+    
+        }
+         
      
 #returnParagraph a:hover {
 color: blue;
