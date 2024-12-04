@@ -11,6 +11,41 @@ const starRatingContainer = document.getElementById("star-rating");
 const returnToTopButton = document.getElementById("return-to-top");
 let selectedRating = 0;
 
+// fade in anim. with observer
+
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    root: null, // Use the viewport as the root
+    threshold: 0.3, // Trigger when 30% of the section is visible
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Trigger fade-in animation
+        entry.target.classList.add("visible");
+
+        // For cascading items
+        if (entry.target.classList.contains("cascade")) {
+          const items = entry.target.querySelectorAll(".cascade-item");
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.style.opacity = 1;
+              item.style.transform = "translateY(0)";
+            }, index * 200); // Add delay for cascading effect
+          });
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Attach observer to all sections or elements
+  document.querySelectorAll(".fade-in, .cascade").forEach((section) => {
+    observer.observe(section);
+  });
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // **Progress Bar**
   const progressBar = document.getElementById("progress-bar");
