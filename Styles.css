@@ -1045,7 +1045,7 @@ color: blue;
   }
   /* Add more nth-child rules as needed */
   
-  #arrow { scale: 0.04; position: absolute;margin: 30%; margin-top: 27%;  transform: rotate(90deg);}
+  #arrow { scale: 0.04; position: absolute;margin: 30%; margin-top: 20%;  transform: rotate(90deg);}
 
 
 
