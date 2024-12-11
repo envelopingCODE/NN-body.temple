@@ -274,3 +274,117 @@ document.querySelectorAll('.star').forEach(star => {
   });
 });
 */
+
+/* Massage Guide */
+
+// Wait for DOM to fully load
+document.addEventListener("DOMContentLoaded", () => {
+  // Cache all relevant sections
+  const guideIntro = document.getElementById("guide-intro");
+  const decisionTree = document.getElementById("decision-tree");
+  const resultsSection = document.getElementById("results");
+  const startGuideButton = document.getElementById("start-guide");
+  const questionElement = document.getElementById("question");
+  const optionsContainer = decisionTree.querySelector(".options");
+  const recommendationElement = document.getElementById("massage-recommendation");
+
+  // Steps for the decision tree
+  const steps = {
+    start: {
+      question: "Which areas would you like to focus on?",
+      options: {
+        "🦴 Back": "pressure",
+        "🦵 Legs": "pressure",
+        "🧍‍♂️ Full Body": "pressure",
+        "🙂 Face": "aromatherapy",
+      },
+    },
+    pressure: {
+      question: "Do you prefer hard or soft pressure?",
+      options: {
+        "🌸 Soft Pressure": "aromatherapy",
+        "🏋️ Firm Pressure": "deep-tissue",
+      },
+    },
+    aromatherapy: {
+      question: "Would you like to use essential oils?",
+      options: {
+        "🪔 Yes": "aromatic",
+        "🚫 No": "classic",
+      },
+    },
+  };
+
+  // Final massage recommendations
+  const massageResults = {
+    classic: "🤲 Classic Full Body Rejuvenation",
+    "deep-tissue": "💪 Deep Tissue Massage",
+    aromatic: "🪔 Aromatic Essence Massage",
+  };
+
+  // Track the current step
+  let currentStep = "start";
+
+  // Function to transition between sections
+  function showSection(currentSection, nextSection) {
+    currentSection.classList.add("hidden");
+    nextSection.classList.remove("hidden");
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Event listener for the Start button
+  startGuideButton.addEventListener("click", () => {
+    showSection(guideIntro, decisionTree);
+    updateQuestion("start");
+  });
+
+  // Update the question and options dynamically
+  function updateQuestion(step) {
+    const stepData = steps[step];
+    if (!stepData) {
+      showResults(step);
+      return;
+    }
+
+    // Update the question text
+    questionElement.textContent = stepData.question;
+
+    // Clear previous options
+    optionsContainer.innerHTML = "";
+
+    // Create buttons for available options
+    for (const [optionText, nextStep] of Object.entries(stepData.options)) {
+      const button = document.createElement("button");
+      button.className = "option";
+      button.textContent = optionText;
+      button.dataset.next = nextStep;
+
+      // Attach click handler
+      button.addEventListener("click", () => {
+        handleOptionClick(nextStep);
+      });
+
+      optionsContainer.appendChild(button);
+    }
+  }
+
+  // Handle option clicks
+  function handleOptionClick(nextStep) {
+    // Fade out current question and options
+    decisionTree.style.animation = "fadeOut 0.3s forwards";
+
+    // Wait for animation to complete before updating
+    setTimeout(() => {
+      decisionTree.style.animation = ""; // Reset animations
+      currentStep = nextStep; // Update the current step
+      updateQuestion(nextStep); // Load the next question
+      decisionTree.style.animation = "fadeIn 0.5s forwards"; // Fade in next question
+    }, 300);
+  }
+
+  // Display the final result
+  function showResults(resultKey) {
+    showSection(decisionTree, resultsSection);
+    recommendationElement.textContent = massageResults[resultKey];
+  }
+});
