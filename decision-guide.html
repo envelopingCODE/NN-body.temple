@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massage Selection Guide | Naturally Nate's</title>
+    <link rel="stylesheet" href="Styles.css">
+<style>
+   
+    .snap {
+        scroll-snap-align: start;
+    }
+
+    body {
+    background: linear-gradient(to bottom, #0d7481, #53ffb2 );
+    animation: backgroundScroll 6s infinite linear;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+        font-weight: 600;
+        margin: auto;
+}
+
+
+@keyframes backgroundScroll {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 0% 100%;
+    }
+    
+}
+
+#guide-intro {
+        display:flex;
+        margin: auto;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20%;
+        font-size: 1.5em;
+   }
+
+   #guide-intro p {
+    text-shadow: #333333 1px 3px 6px;
+   }
+
+   #decision-tree {
+        display:flex;
+        margin: auto;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20%;
+        font-size: 1.5em;
+        background: linear-gradient(to top, #0d7481, #53ffb2 );
+        animation:  1s infinite linear;
+   }
+
+   #results {
+        display:flex;
+        margin: auto;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20%;
+        font-size: 1.4em;
+        background-image: url(pexels-sergey-torbik-42706484-7365398.webp);
+        background-position: 60% 60%;
+        background-size: contain;     
+
+   }
+
+
+
+   /* Fade animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Scale animation for results */
+@keyframes scaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hidden {
+    display: none;
+}
+#start-guide {
+    padding: 14px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    max-width: 140px;
+    margin: auto;
+    margin-right: 40%;
+}
+
+.option {
+    padding: 14px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: auto;
+}
+
+.option:hover {
+    background-color: #00d0ff;
+}
+
+.centered {
+ align-items: center;
+}
+
+</style>
+    
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+    
+    <div id="scroll-container">
+    
+    <header>
+        <a id="logoLink" href="index.html"> 
+            <img id="logo" src="NN_logo_alt_black.svg" alt="Naturally Nate logo"> 
+        </a>
+        <button class="menu-bttn open" id="open-menu">
+            <span class="menu-icon">
+                <span class="lines"></span>
+                <span class="lines"></span>
+                <span class="lines"></span>
+            </span>
+        </button>
+        <nav id="nav-menu">
+            <button class="menu-bttn-close" id="close-menu">
+                <img class="X" src="image(41).png" alt="x">
+            </button>
+            <ul>
+                <li><a class="navLinks" href="index.html">NN's body.temple</a></li>
+                <li><a class="navLinks" href="index.html#two">Treatments Overview</a></li>
+                <li> <a class="navLinks" href="decision-guide.html"> Massage Guide  </a></li>
+                <li><a class="navLinks" href="index.html#reviews-section">Reviews</a></li>
+                <li><a class="navLinks" href="privacy.html">Privacy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+
+    <section id="guide-intro" class="fullscreen snap">
+        <div class="centered">
+            <h1>Find the right massage for you!</h1>
+            <p>Not sure which option to pick? Use our interactive guide to find the right massage for you.</p>
+            <div class="button-container">
+            <button id="start-guide">Start Now</button>
+        </div>
+        </div>
+    </section>
+
+    <section id="decision-tree" class="fullscreen snap hidden">
+        <div class="question-container">
+            <h2 id="question">Which areas would you like to focus on?</h2>
+            <div class="options">
+                <button class="option" data-next="pressure">
+                    🦴 Back
+                </button>
+                <button class="option" data-next="pressure">
+                    🦵 Legs
+                </button>
+                <button class="option" data-next="pressure">
+                    🧍‍♂️ Full Body
+                </button>
+                <button class="option" data-next="aromatherapy">
+                    🙂 Face
+                </button>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="results" class="fullscreen snap hidden">
+        <div class="background-layer"></div>
+        <div class="content-layer">
+        <div class="centered">
+            <h1>Your Ideal Massage:</h1>
+            <p id="massage-recommendation"></p>
+            <a href="index.html#two" class="button">See Details & Book</a>
+        </div>
+    </div>
+    </section>
+
+</div>
+
+
+
+
+    <script src="Js.js"></script></body>
+</html>
