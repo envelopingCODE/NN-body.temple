@@ -1,3 +1,5 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "bg3ModHelper.rootModPath": "c:\\Users\\actor\\Documents\\Webdesign_projects\\Naturally_Nate\\NN - body temple",
+    "bg3ModHelper.packingPriority": 0
 }

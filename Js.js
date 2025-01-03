@@ -76,13 +76,49 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateProgressBar);
 
   // **Menu Toggle**
-  function toggleMenu() {
-    let style = window.getComputedStyle(navMenuEl);
-    navMenuEl.style.display = style.display === "none" ? "block" : "none";
-  }
+  
+// Our opening sequence
+openMenuButtonEl.addEventListener('click', () => {
+  // First, ensure the menu is visible
+  navMenuEl.style.display = 'block';
 
-  openMenuButtonEl?.addEventListener("click", toggleMenu);
-  closeMenuButtonEl?.addEventListener("click", toggleMenu);
+  // Reset animations and trigger them again
+  navMenuEl.classList.remove('active'); // Remove the active class to reset animation
+  void navMenuEl.offsetHeight; // Trigger reflow (this forces the reset of animation)
+  
+  // Then trigger our animations
+  requestAnimationFrame(() => {
+    navMenuEl.classList.add('active');
+  });
+});
+
+// Our closing sequence
+closeMenuButtonEl.addEventListener('click', () => {
+  navMenuEl.classList.remove('active');
+  
+  // Wait for animation to complete before hiding
+  setTimeout(() => {
+    navMenuEl.style.display = 'none';
+    
+    // Reset our menu items to their initial state
+    // This is like resetting our actors to their starting positions
+    const menuItems = navMenuEl.querySelectorAll('ul li');
+    menuItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(30px)';
+    });
+    
+    // Force a reflow to ensure our reset takes effect
+    void navMenuEl.offsetHeight;
+    
+    // Reset our menu items to be controlled by CSS again
+    menuItems.forEach(item => {
+        item.style.opacity = '';
+        item.style.transform = '';
+    });
+  }, 500); // Adjust timeout if needed
+});
+
 
   // **Event Delegation for Navigation Links**
   navMenuEl?.addEventListener("click", function (event) {
