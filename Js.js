@@ -11,6 +11,7 @@ const starRatingContainer = document.getElementById("star-rating");
 const returnToTopButton = document.getElementById("return-to-top");
 let selectedRating = 0;
 
+
 // fade in anim. with observer
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -311,116 +312,278 @@ document.querySelectorAll('.star').forEach(star => {
 });
 */
 
-/* Massage Guide */
 
-// Wait for DOM to fully load
+
+// Guide Initialization  #1
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Cache all relevant sections
+  // Cache DOM elements
   const guideIntro = document.getElementById("guide-intro");
-  const decisionTree = document.getElementById("decision-tree");
+  const decisionTree = document.querySelector(".guide-journey");  // Updated selector
   const resultsSection = document.getElementById("results");
   const startGuideButton = document.getElementById("start-guide");
   const questionElement = document.getElementById("question");
-  const optionsContainer = decisionTree.querySelector(".options");
+  const optionsContainer = document.querySelector(".options");  // Updated selector
   const recommendationElement = document.getElementById("massage-recommendation");
 
-  // Steps for the decision tree
-  const steps = {
-    start: {
-      question: "Which areas would you like to focus on?",
-      options: {
-        "🦴 Back": "pressure",
-        "🦵 Legs": "pressure",
-        "🧍‍♂️ Full Body": "pressure",
-        "🙂 Face": "aromatherapy",
+  
+
+    // Add progress tracking
+    const progressSteps = document.querySelectorAll('.progress-step');
+    let currentStepIndex = 0;
+
+    function updateProgress(stepName) {
+        // Map step names to indices
+        const stepIndices = {
+            'start': 0,
+            'intensity': 1,
+            'duration': 2,
+            'aromatherapy': 3,
+            'final': 4
+        };
+
+        // Update progress visualization
+        progressSteps.forEach((step, index) => {
+            if (index <= stepIndices[stepName]) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+    }
+  
+
+    // 🌟 Here's our missing steps definition #2
+    const steps = {
+      start: {
+          question: "Which areas would you like to focus on?",
+          options: {
+              "🦴 Back": { next: "intensity", focus: "back" },
+              "🦵 Legs": { next: "intensity", focus: "legs" },
+              "🧍‍♂️ Full Body": { next: "intensity", focus: "full" },
+              "🙂 Face": { next: "aromatherapy", focus: "face" }
+          }
       },
-    },
-    pressure: {
-      question: "Do you prefer hard or soft pressure?",
-      options: {
-        "🌸 Soft Pressure": "aromatherapy",
-        "🏋️ Firm Pressure": "deep-tissue",
+      intensity: {
+          question: "What type of pressure do you prefer?",
+          options: {
+              "🪶 Light to Medium": { next: "duration", intensity: "gentle" },
+              "💪 Firm to Deep": { next: "duration", intensity: "deep" }
+          }
       },
-    },
-    aromatherapy: {
-      question: "Would you like to use essential oils?",
-      options: {
-        "🪔 Yes": "aromatic",
-        "🚫 No": "classic",
+      duration: {
+          question: "How long would you like your session to be?",
+          options: {
+              " 25 minutes": { next: "aromatherapy", duration: "25" },
+              " 50 minutes": { next: "aromatherapy", duration: "50" },
+              " 80 minutes": { next: "aromatherapy", duration: "80" }
+          }
       },
-    },
+      aromatherapy: {
+          question: "Would you like to include aromatherapy?",
+          options: {
+              "🪔 Yes": { next: "final", aroma: true },
+              "✨ No": { next: "final", aroma: false }
+          }
+      }
   };
 
-  // Final massage recommendations
-  const massageResults = {
-    classic: "🤲 Classic Full Body Rejuvenation",
-    "deep-tissue": "💪 Deep Tissue Massage",
-    aromatic: "🪔 Aromatic Essence Massage",
+
+
+  // Add this to section #2, after steps definition
+const massageOptions = {
+  "classic-partial": {
+      title: "Classic Partial Body Massage 🦵🏼",
+      description: "Indulge in a personalized partial body massage, focusing on your choice of the back, legs, or face.",
+      durations: [
+          { time: "25 min", price: 49, discounted: 44 }
+      ],
+      tags: ["gentle", "focused", "quick"]
+  },
+  "classic-full": {
+      title: "Classic Full Body Rejuvenation 🤲🏼",
+      description: "Perfect for massage novices, experience a comprehensive massage targeting your back, arms, and legs with time-honored techniques.",
+      durations: [
+          { time: "50 min", price: 89, discounted: 80 },
+          { time: "80 min", price: 119, discounted: 107 }
+      ],
+      tags: ["rejuvenating", "full-body", "novices"]
+  },
+  "pure-relaxation": {
+      title: "Pure Relaxation 🌱",
+      description: "Combine the soothing benefits of a classic back and legs massage for total relaxation and a sensation of weightlessness.",
+      durations: [
+          { time: "50 min", price: 89, discounted: 80 }
+      ],
+      tags: ["relaxing", "soothing", "stress-relief"]
+  },
+  "deep-tissue": {
+      title: "Deep Tissue Massage 💆🏼‍♂️",
+      description: "Unwind with a deeply penetrating massage technique designed to release deeply stored tension and restore harmony to muscles, tissues, and joints.",
+      durations: [
+          { time: "25 min", price: 60, discounted: 54 },
+          { time: "50 min", price: 99, discounted: 89 }
+      ],
+      tags: ["intense", "tension-release", "therapeutic"]
+  },
+  "aromatic-essence": {
+      title: "Aromatic Essence Massage 🪔",
+      description: "Drift into tranquility with a delicate massage incorporating your chosen natural essential oil.",
+      durations: [
+          { time: "25 min", price: 49, discounted: 44 },
+          { time: "50 min", price: 89, discounted: 80 },
+          { time: "80 min", price: 119, discounted: 107 }
+      ],
+      tags: ["aromatherapy", "calming", "essential-oils"]
+  }
+};
+
+
+
+  // Initialize user preferences #3
+  let userPreferences = {
+      focus: null,
+      intensity: null,
+      duration: null,
+      aroma: null
   };
 
-  // Track the current step
-  let currentStep = "start";
-
-  // Function to transition between sections
-  function showSection(currentSection, nextSection) {
-    currentSection.classList.add("hidden");
-    nextSection.classList.remove("hidden");
-    nextSection.scrollIntoView({ behavior: "smooth" });
+    // Function to transition between sections #4
+    function showSection(currentSection, nextSection) {
+      currentSection.classList.add("hidden");
+      nextSection.classList.remove("hidden");
+      nextSection.scrollIntoView({ behavior: "smooth" });
   }
 
-  // Event listener for the Start button
-  startGuideButton.addEventListener("click", () => {
-    showSection(guideIntro, decisionTree);
-    updateQuestion("start");
+  // Event listener for Start button #5
+  startGuideButton?.addEventListener("click", () => {
+      console.log("Start button clicked"); // Debug log
+      showSection(guideIntro, decisionTree);
+      // Initialize the first question
+      updateQuestion("start");
   });
 
-  // Update the question and options dynamically
+
+    // Enhance our existing handlers to update progress
+    function handleOptionClick(nextStep) {
+      const currentContainer = document.querySelector('.question-container');
+      currentContainer.style.opacity = '0';
+      currentContainer.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+          currentContainer.style.opacity = '1';
+          currentContainer.style.transform = 'translateY(0)';
+          
+          // Update progress before moving to next step
+          updateProgress(nextStep);
+          
+          if (nextStep === 'final') {
+              showResults(userPreferences);
+          } else {
+              updateQuestion(nextStep);
+          }
+      }, 300);
+  }
+
   function updateQuestion(step) {
     const stepData = steps[step];
     if (!stepData) {
-      showResults(step);
-      return;
+        showResults(userPreferences);
+        return;
     }
 
-    // Update the question text
     questionElement.textContent = stepData.question;
-
-    // Clear previous options
     optionsContainer.innerHTML = "";
 
-    // Create buttons for available options
-    for (const [optionText, nextStep] of Object.entries(stepData.options)) {
-      const button = document.createElement("button");
-      button.className = "option";
-      button.textContent = optionText;
-      button.dataset.next = nextStep;
-
-      // Attach click handler
-      button.addEventListener("click", () => {
-        handleOptionClick(nextStep);
-      });
-
-      optionsContainer.appendChild(button);
+    Object.entries(stepData.options).forEach(([text, data]) => {
+        const button = document.createElement("button");
+        button.className = "option";
+            
+            // Split emoji and text #6
+            const [emoji, ...textParts] = text.split(" ");
+            button.innerHTML = `
+                <span class="option-emoji">${emoji}</span>
+                <span class="option-text">${textParts.join(" ")}</span>
+            `;
+            
+            button.addEventListener("click", () => {
+                // Update preferences based on the selection #7
+                Object.entries(data).forEach(([key, value]) => {
+                    if (key !== 'next') {
+                        userPreferences[key] = value;
+                    }
+                });
+                
+                handleOptionClick(data.next);
+            });
+            
+            optionsContainer.appendChild(button);
+        });
     }
+
+
+    function showResults(preferences) {
+      // 🗺️ Define our recommendation logic map
+      let recommendedMassage = '';
+      
+      // Full-body focused paths
+      if (preferences.focus === "full") {
+          if (preferences.intensity === "deep") {
+              recommendedMassage = "Deep Tissue Massage 💆🏼‍♂️";
+          } else if (preferences.aroma) {
+              recommendedMassage = "Aromatic Essence Massage 🪔";
+          } else {
+              recommendedMassage = "Classic Full Body Rejuvenation 🤲🏼";
+          }
+      }
+      // Back-focused paths
+      else if (preferences.focus === "back") {
+          if (preferences.intensity === "deep") {
+              recommendedMassage = "Deep Tissue Massage 💆🏼‍♂️";
+          } else if (preferences.duration === "50") {
+              recommendedMassage = "Pure Relaxation 🌱";
+          } else {
+              recommendedMassage = "Classic Partial Body Massage 🦵🏼";
+          }
+      }
+      // Legs-focused paths
+      else if (preferences.focus === "legs") {
+          if (preferences.intensity === "deep") {
+              recommendedMassage = "Deep Tissue Massage 💆🏼‍♂️";
+          } else if (preferences.duration === "50") {
+              recommendedMassage = "Pure Relaxation 🌱";
+          } else {
+              recommendedMassage = "Classic Partial Body Massage 🦵🏼";
+          }
+      }
+      // Face-focused paths (always leads to either classic or aromatic)
+      else if (preferences.focus === "face") {
+          if (preferences.aroma) {
+              recommendedMassage = "Aromatic Essence Massage 🪔";
+          } else {
+              recommendedMassage = "Classic Partial Body Massage 🦵🏼";
+          }
+      }
+  
+      // 🎨 Create our result display
+      recommendationElement.innerHTML = `
+          <div class="recommendation-wrapper">
+              <h3>${recommendedMassage}</h3>
+           
+      `;
+      
+      // Transition to results
+      showSection(decisionTree, resultsSection);
   }
 
-  // Handle option clicks
-  function handleOptionClick(nextStep) {
-    // Fade out current question and options
-    decisionTree.style.animation = "fadeOut 0.3s forwards";
+    // Log initial state for debugging #8
+    console.log("Guide initialized. Elements found:", {
+      startButton: !!startGuideButton,
+      guideIntro: !!guideIntro,
+      decisionTree: !!decisionTree
+  });
 
-    // Wait for animation to complete before updating
-    setTimeout(() => {
-      decisionTree.style.animation = ""; // Reset animations
-      currentStep = nextStep; // Update the current step
-      updateQuestion(nextStep); // Load the next question
-      decisionTree.style.animation = "fadeIn 0.5s forwards"; // Fade in next question
-    }, 300);
-  }
-
-  // Display the final result
-  function showResults(resultKey) {
-    showSection(decisionTree, resultsSection);
-    recommendationElement.textContent = massageResults[resultKey];
-  }
+  
 });

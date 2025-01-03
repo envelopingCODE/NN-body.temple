@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Add to your HTML file's head -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-icons@5.4.0/umd/react-icons.min.js"></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Massage Selection Guide | Naturally Nate's</title>
@@ -108,27 +113,6 @@
 .hidden {
     display: none;
 }
-#start-guide {
-    padding: 14px;
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    max-width: 140px;
-    margin: auto;
-    margin-right: 40%;
-}
-
-.option {
-    padding: 14px;
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: auto;
-}
 
 .option:hover {
     background-color: #00d0ff;
@@ -138,6 +122,69 @@
  align-items: center;
 }
 
+
+
+#guide-intro {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0d7481 0%, #53ffb2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-content {
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transform: translateY(20px);
+    animation: floatIn 1s ease forwards;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.intro-content p {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.time-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.time-badge {
+    background: rgba(0, 255, 200, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
 </style>
     
 </head>
@@ -173,32 +220,82 @@
     </header>
 
     
-
     <section id="guide-intro" class="fullscreen snap">
-        <div class="centered">
-            <h1>Find the right massage for you!</h1>
-            <p>Not sure which option to pick? Use our interactive guide to find the right massage for you.</p>
-            <div class="button-container">
-            <button id="start-guide">Start Now</button>
-        </div>
+        <div class="intro-content">
+            <div id="icon-home"></div>
+            <div id="icon-user"></div>
+            <div id="icon-star"></div>
+            <div id="icon-cog"></div>
+            <div id="icon-heart"></div>
+            
+            <h1>Find Your Perfect Massage</h1>
+            <p>Answer a few simple questions and discover the ideal treatment for your needs. Our guide will help you choose from our range of therapeutic massages.</p>
+            
+            <div class="time-indicator">
+                <span class="time-badge">⏱️ 2 minute guide</span>
+                <span class="time-badge">🎯 Personalized match</span>
+            </div>
+    
+            <div class="features-grid">
+                <div class="feature">
+                    <span class="feature-icon">🎯</span>
+                    <span class="feature-text">Tailored to you</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">⚡</span>
+                    <span class="feature-text">Quick & easy</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💆‍♂️</span>
+                    <span class="feature-text">Expert matching</span>
+                </div>
+            </div>
+     
+            
+            <button id="start-guide" class="pulse">
+                Begin Your Journey
+                <span class="button-arrow">→</span>
+            </button>
         </div>
     </section>
 
-    <section id="decision-tree" class="fullscreen snap hidden">
+    <section class="guide-journey">
+        <!-- Progress Indicator -->
+        <div class="journey-progress">
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+        </div>
+    
+        <!-- Back Button -->
+        <button class="back-button hidden">
+            ← Back
+        </button>
+    
+        <!-- Question Container -->
         <div class="question-container">
             <h2 id="question">Which areas would you like to focus on?</h2>
             <div class="options">
                 <button class="option" data-next="pressure">
-                    🦴 Back
+                    <span class="option-emoji">🦴</span>
+                    Back & Shoulders
+                    <span class="option-description">Target tension in upper body</span>
                 </button>
                 <button class="option" data-next="pressure">
-                    🦵 Legs
+                    <span class="option-emoji">🦵</span>
+                    Legs & Feet
+                    <span class="option-description">Revitalize tired legs</span>
                 </button>
                 <button class="option" data-next="pressure">
-                    🧍‍♂️ Full Body
+                    <span class="option-emoji">🧍‍♂️</span>
+                    Full Body Experience
+                    <span class="option-description">Complete relaxation journey</span>
                 </button>
                 <button class="option" data-next="aromatherapy">
-                    🙂 Face
+                    <span class="option-emoji">🙂</span>
+                    Face & Head
+                    <span class="option-description">Release facial tension</span>
                 </button>
             </div>
         </div>
