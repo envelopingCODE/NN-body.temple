@@ -298,7 +298,6 @@ font-size: 0.8em;
 
 .thank-you {
     margin: auto;
-    padding: auto;
     margin-left: 10%;
     margin-top: 50%;
 }
@@ -1218,7 +1217,7 @@ color: blue;
     margin-bottom: 2rem;
 }
 
-//* Modern Button Styles with Glass Morphism */
+/* Modern Button Styles with Glass Morphism */
 .cta-button {
     display: inline-flex;
     align-items: center;
@@ -1484,7 +1483,7 @@ color: blue;
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.147);
+    background: rgba(255, 255, 255, 0.387);
     backdrop-filter: blur(10px);
     border-radius: 20px;
 }
@@ -1617,4 +1616,4 @@ color: blue;
         width: 100%;
         text-align: center;
     }
-}
+}}
