@@ -360,10 +360,10 @@ document.addEventListener("DOMContentLoaded", () => {
       start: {
           question: "Which areas would you like to focus on?",
           options: {
-              "🦴 Back": { next: "intensity", focus: "back" },
+              "🙇🏼‍♂️ Back": { next: "intensity", focus: "back" },
               "🦵 Legs": { next: "intensity", focus: "legs" },
               "🧍‍♂️ Full Body": { next: "intensity", focus: "full" },
-              "🙂 Face": { next: "aromatherapy", focus: "face" }
+              "👨🏼‍🦱 Face and Scalp": { next: "aromatherapy", focus: "face" }
           }
       },
       intensity: {
