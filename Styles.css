@@ -1089,7 +1089,7 @@ color: blue;
   }
   /* Add more nth-child rules as needed */
   
-  #arrow { scale: 0.036; position: absolute;margin: 30%; margin-top: 30%;  transform: rotate(90deg);}
+  #arrow { scale: 0.036; position: absolute;margin: 30%; margin-top: 27%;  transform: rotate(90deg);}
 
 
 /* Hide elements initially */
@@ -1456,7 +1456,7 @@ color: blue;
 /* Progress Indicator Position */
 .journey-progress {
     position: fixed;
-    top: 100px; /* Navbar height (80px) + 20px breathing room */
+    top: 140px; /* Navbar height (80px) + 20px breathing room */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -1470,7 +1470,7 @@ color: blue;
 
 /* Guide Journey Container */
 .guide-journey {
-    padding-top: 160px; /* Navbar (80px) + Progress Bar Height (~40px) + Extra Space (40px) */
+    padding-top: 140px; /* Navbar (80px) + Progress Bar Height (~40px) + Extra Space (40px) */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
