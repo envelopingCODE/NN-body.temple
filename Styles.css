@@ -1456,7 +1456,7 @@ color: blue;
 /* Progress Indicator Position */
 .journey-progress {
     position: fixed;
-    top: 140px; /* Navbar height (80px) + 20px breathing room */
+    top: 15%; /* Navbar height (80px) + 20px breathing room */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
