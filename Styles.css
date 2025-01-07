@@ -1240,6 +1240,10 @@ color: blue;
     padding: 1rem;
 }
 
+#one .card {
+    padding-bottom:10px;
+}
+
 /* Improved background handling */
 #one::before {
     content: "";
