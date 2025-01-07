@@ -390,10 +390,19 @@ font-size: 0.8em;
     background-size: 100%;
 }
 
+#reviews-section h2 {
+ text-align: center;    
+ padding: 3%;
+ text-shadow: #333333 0px 0.5px 3px;
+
+}
+
 .dark {
     color: cadetblue;
-    margin: 6%;
-    display: inline;
+    margin: 0 0.3em; /* Optional: adds a small controlled space if desired */
+    display: inline; /* Ensures inline flow */
+     text-shadow: #333333 0px 0.5px 3px;
+
 }
 
 #preLinkText {
