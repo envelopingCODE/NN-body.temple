@@ -17,10 +17,59 @@ body, html {
 
 }
 
+/* Chapter 1: Setting the Stage */
 .handwritten {
-    font-family:  YourHandwrittenFont ,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.8rem;
+    font-family: 'YourHandwrittenFont', cursive; /* Your existing handwritten font */
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: signatureAppear 0.5s ease forwards,
+               signatureWrite 3.4s ease forwards;
 }
+
+
+
+/* Chapter 3: The Choreography */
+@keyframes signatureAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes signatureWrite {
+    0% {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes signatureGlow {
+    0% {
+        transform: translateX(-100%) skewX(-45deg);
+    }
+    100% {
+        transform: translateX(200%) skewX(-45deg);
+    }
+}
+
+/* Chapter 4: Hover Enhancement */
+.handwritten:hover {
+    animation: signatureWiggle 0.5s ease;
+    text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+}
+
+@keyframes signatureWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+}
+
 
 html {
     scroll-snap-type: y mandatory;
@@ -1093,7 +1142,7 @@ color: blue;
   }
   /* Add more nth-child rules as needed */
   
-  #arrow { scale: 0.036; position: absolute;margin: 30%; margin-top: 24%;  transform: rotate(90deg);}
+  #arrow { scale: 0.036; position: absolute;margin: 30%; margin-top:37%;  transform: rotate(90deg);}
 
 
 /* Hide elements initially */
@@ -1631,6 +1680,7 @@ color: blue;
         text-align: center;
     }
 }}
+
 
 
 
