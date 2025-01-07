@@ -392,55 +392,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Add this to section #2, after steps definition
-const massageOptions = {
-  "classic-partial": {
-      title: "Classic Partial Body Massage 🦵🏼",
-      description: "Indulge in a personalized partial body massage, focusing on your choice of the back, legs, or face.",
-      durations: [
-          { time: "25 min", price: 49, discounted: 44 }
-      ],
-      tags: ["gentle", "focused", "quick"]
-  },
-  "classic-full": {
-      title: "Classic Full Body Rejuvenation 🤲🏼",
-      description: "Perfect for massage novices, experience a comprehensive massage targeting your back, arms, and legs with time-honored techniques.",
-      durations: [
-          { time: "50 min", price: 89, discounted: 80 },
-          { time: "80 min", price: 119, discounted: 107 }
-      ],
-      tags: ["rejuvenating", "full-body", "novices"]
-  },
-  "pure-relaxation": {
-      title: "Pure Relaxation 🌱",
-      description: "Combine the soothing benefits of a classic back and legs massage for total relaxation and a sensation of weightlessness.",
-      durations: [
-          { time: "50 min", price: 89, discounted: 80 }
-      ],
-      tags: ["relaxing", "soothing", "stress-relief"]
-  },
-  "deep-tissue": {
-      title: "Deep Tissue Massage 💆🏼‍♂️",
-      description: "Unwind with a deeply penetrating massage technique designed to release deeply stored tension and restore harmony to muscles, tissues, and joints.",
-      durations: [
-          { time: "25 min", price: 60, discounted: 54 },
-          { time: "50 min", price: 99, discounted: 89 }
-      ],
-      tags: ["intense", "tension-release", "therapeutic"]
-  },
-  "aromatic-essence": {
-      title: "Aromatic Essence Massage 🪔",
-      description: "Drift into tranquility with a delicate massage incorporating your chosen natural essential oil.",
-      durations: [
-          { time: "25 min", price: 49, discounted: 44 },
-          { time: "50 min", price: 89, discounted: 80 },
-          { time: "80 min", price: 119, discounted: 107 }
-      ],
-      tags: ["aromatherapy", "calming", "essential-oils"]
-  }
-};
-
-
 
   // Initialize user preferences #3
   let userPreferences = {

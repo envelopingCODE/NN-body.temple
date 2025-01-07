@@ -52,9 +52,9 @@
    #results {
         display:flex;
         margin: auto;
+        padding: 10%;
         flex-direction: column;
         justify-content: space-around;
-        padding: 20%;
         font-size: 1.4em;
         background-image: url(pexels-sergey-torbik-42706484-7365398.webp);
         background-size: cover;
@@ -157,19 +157,41 @@
     }
 }
 
-.intro-content h1 {
+.intro-content h1  {
     font-size: clamp(2rem, vw, 3rem);
     margin-bottom: 1.5rem;
     color: #ffffff;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.intro-content p {
+.results-container h1 {
+    font-size: 4rem;
+    box-shadow: none;
+    font-family: YourHandwrittenFont, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    
+}
+
+.intro-content p  {
     font-size: clamp(1rem, 3vw, 1.25rem);
     line-height: 1.6;
     margin-bottom: 2rem;
     color: #ffffff;
 }
+
+.results-container p {
+    font-size: clamp(1.4rem, 3vw, 1.6rem);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-shadow: #333333 0px 3px 5px;
+    color: rgb(0, 255, 200);
+}
+
+.results-container a {
+ color: white;
+ font-size: clamp(1.1rem, 3vw, 1.2rem);
+}
+
 
 .time-indicator {
     display: flex;
@@ -206,7 +228,7 @@
             <ul>
                 <li><a class="navLinks" href="index.html">NN's body.temple</a></li>
                 <li><a class="navLinks" href="index.html#two">Treatments Overview</a></li>
-                <li> <a class="navLinks" href="decision-guide.html"> Massage Guide  </a></li>
+                <li> <a class="navLinks" href="decision-guide.html"> Massage QuickGuide  </a></li>
                 <li><a class="navLinks" href="index.html#reviews-section">Reviews</a></li>
                 <li><a class="navLinks" href="privacy.html">Privacy</a></li>
             </ul>
@@ -216,12 +238,7 @@
     
     <section id="guide-intro" class="fullscreen snap">
         <div class="intro-content">
-            <div id="icon-home"></div>
-            <div id="icon-user"></div>
-            <div id="icon-star"></div>
-            <div id="icon-cog"></div>
-            <div id="icon-heart"></div>
-            
+
             <h1>Find Your Perfect Massage</h1>
             <p> Our QuickGuide will help you choose from our range of therapeutic massages.</p>
             
@@ -265,26 +282,7 @@
         <div class="question-container">
             <h2 id="question">Which areas would you like to focus on?</h2>
             <div class="options">
-                <button class="option" data-next="pressure">
-                    <span class="option-emoji">🙇🏻‍♂️</span>
-                    Back & Shoulders
-                    <span class="option-description">Target tension in upper body</span>
-                </button>
-                <button class="option" data-next="pressure">
-                    <span class="option-emoji">🦵</span>
-                    Legs & Feet
-                    <span class="option-description">Revitalize tired legs</span>
-                </button>
-                <button class="option" data-next="pressure">
-                    <span class="option-emoji">🧍‍♂️</span>
-                    Full Body Experience
-                    <span class="option-description">Complete relaxation journey</span>
-                </button>
-                <button class="option" data-next="aromatherapy">
-                    <span class="option-emoji">🙂</span>
-                    Face & Head
-                    <span class="option-description">Release facial tension</span>
-                </button>
+              
             </div>
         </div>
     </section>
@@ -293,10 +291,12 @@
     <section id="results" class="fullscreen snap hidden">
         <div class="background-layer"></div>
         <div class="content-layer">
+                <div class="results-container">
         <div class="centered">
             <h1>Your Ideal Massage:</h1>
             <p id="massage-recommendation"></p>
             <a href="index.html#two" class="button">See Details & Book</a>
+        </div>
         </div>
     </div>
     </section>
