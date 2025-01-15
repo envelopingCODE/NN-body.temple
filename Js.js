@@ -554,3 +554,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdownBtn = document.querySelector('.dropbtn');
+  const dropdownContent = document.querySelector('.dropdown-content');
+  let isOpen = false;
+
+  // Toggle dropdown on button click
+  dropdownBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (!isOpen) {
+          showDropdown();
+      } else {
+          hideDropdown();
+      }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+      if (isOpen && !dropdownContent.contains(e.target)) {
+          hideDropdown();
+      }
+  });
+
+  // Close dropdown when pressing Escape key
+  document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isOpen) {
+          hideDropdown();
+      }
+  });
+
+  function showDropdown() {
+      dropdownContent.classList.add('show');
+      isOpen = true;
+      // Optional: animate the button
+      dropdownBtn.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+          dropdownBtn.style.transform = 'scale(1)';
+      }, 150);
+  }
+
+  function hideDropdown() {
+      dropdownContent.classList.remove('show');
+      isOpen = false;
+  }
+});

@@ -1626,12 +1626,6 @@ color: blue;
     transform: translateX(100%);
 }
 
-/* Emoji Enhancement */
-.option-emoji {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    display: block;
-}
 
 /* Question Container */
 .results-container {
@@ -1696,42 +1690,220 @@ color: blue;
 }}
 
 
-
-
-/* SoMe / bookin g*/
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+@keyframes subtle-glow {
+    0% {
+        box-shadow: 0 4px 15px rgba(13, 116, 129, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(83, 255, 178, 0.3);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(13, 116, 129, 0.2);
+    }
+}
+
+@keyframes soft-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .dropbtn {
-    background: linear-gradient(to right, #1ec7e8, #07b987); /* Subtle blue-green gradient */
-    color: white; /* White text */
-    padding: 20px 35px; /* More padding for a larger button */
-    font-size: 18px; /* Slightly increased font size */
-    border: none; /* Remove borders */
-    cursor: pointer; /* Pointer/hand icon */
-    transition: background 0.3s ease; /* Smooth gradient transition on hover */
+    width: 220px;
+    background: linear-gradient(45deg, #53ffb2, #0897aac4);
+    color: white;
+    padding: 20px 20px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5x;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    animation: 
+               soft-pulse 6s infinite cubic-bezier(0.6, 0, 0.4, 1);
+     margin: auto;
+               
 }
 
-.dropbtn:hover {
-    background: linear-gradient(to right, #1ec7e8, #00bfff); /* Same gradient for consistent look */
+.dropbtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(83, 255, 178, 0.15),
+        rgba(13, 116, 129, 0.15)
+    );
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
 
+.dropbtn:hover::before {
+    opacity: 1;
+}
+
+.dropbtn:active {
+    transform: scale(0.98);
+    animation: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(13, 116, 129, 0.3);
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropbtn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    transition: transform 0.6s ease;
+}
+
+.dropbtn:hover::after {
+    transform: translateX(50%);
+}
+
+.dropbtn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(13, 116, 129, 0.2);
+}
 
 .dropdown-content {
-    display: none;
     position: absolute;
-    background-color: #f9f9f9; /* Dropdown menu background */
-    min-width: 100%; /* Width of the dropdown content to match the button width */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow effect */
-    z-index: 1;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(83, 255, 178, 0.1);
+    box-shadow: 0 8px 32px rgba(13, 116, 129, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 1000;
+}
+
+.dropdown-content.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .dropdown-content a {
-    color: black; /* Black text color */
-    padding: 12px 16px; /* Padding inside the links */
-    text-decoration: none; /* Remove underline from links */
-    display: block; /* Change the display to make links appear below each other */
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-height: 48px;
 }
 
+/* WhatsApp styling */
+#WA {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 8px;
+    background-image: linear-gradient(90deg, 
+        rgba(37, 211, 102, 0.1), 
+        rgba(18, 140, 126, 0.1)
+    );
+}
+
+#WA span {
+    background: linear-gradient(90deg, #25D366, #128C7E);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+}
+
+#WA:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Telegram styling */
+#TEL {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 8px;
+    background-image: linear-gradient(90deg, 
+        rgba(0, 136, 204, 0.1), 
+        rgba(2, 103, 153, 0.1)
+    );
+}
+
+#TEL span {
+    background: linear-gradient(90deg, #0088cc, #026799);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+}
+
+#TEL:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dropbtn .emoji {
+    font-size: 1.4em;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+/* Media query for desktop */
+@media screen and (min-width: 768px) {
+    .dropdown {
+        display: inline-block;
+        width: auto;
+    }
+
+    .dropbtn {
+        width: auto;
+        min-width: 200px;
+    }
+
+    .dropdown-content {
+        min-width: 200px;
+        width: auto;
+    }
+}
