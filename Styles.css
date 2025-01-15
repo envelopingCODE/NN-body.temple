@@ -1724,7 +1724,7 @@ color: blue;
 
 .dropbtn {
     width: 220px;
-    background: linear-gradient(45deg, #53ffb2, #0897aac4);
+    background: linear-gradient(90deg, #53ffb2, #107d8ee2);
     color: white;
     padding: 20px 20px;
     font-size: 1.1em;
@@ -1842,8 +1842,8 @@ color: blue;
     border-radius: 8px;
     margin: 8px;
     background-image: linear-gradient(90deg, 
-        rgba(37, 211, 102, 0.1), 
-        rgba(18, 140, 126, 0.1)
+        rgba(37, 211, 101, 0.048), 
+        rgba(18, 140, 126, 0.03)
     );
 }
 
@@ -1872,7 +1872,7 @@ color: blue;
 }
 
 #TEL span {
-    background: linear-gradient(90deg, #0088cc, #026799);
+    background: linear-gradient(90deg, #016ea5, #00aaff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -1907,3 +1907,22 @@ color: blue;
         width: auto;
     }
 }
+
+.dropdown-content a svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.dropdown-content a {
+    gap: 12px; /* Adds space between icon and text */
+}
+
+#WA svg {
+    fill: #25D366;
+}
+
+#TEL svg {
+    fill: #0088cc;
+}
+
