@@ -1723,6 +1723,8 @@ color: blue;
     }
 }
 
+
+
 .dropbtn {
     width: 220px;
     background: linear-gradient(90deg, #53ffb2, #107d8ee2);
@@ -1744,6 +1746,7 @@ color: blue;
     animation: 
                soft-pulse 6s infinite cubic-bezier(0.6, 0, 0.4, 1);
      margin: auto;
+     
                
 }
 
