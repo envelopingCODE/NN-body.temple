@@ -170,6 +170,22 @@ closeMenuButtonEl.addEventListener('click', () => {
     }
   });
 
+  // SoME / book 
+
+
+const dropbtn = document.querySelector(".dropbtn");
+const dropdownContent = document.querySelector(".dropdown-content");
+
+dropbtn.addEventListener("click", function() {
+  dropdownContent.style.display = "block";
+});
+
+document.addEventListener("click", function(event) {
+  if (!event.target.matches(".dropbtn")) {
+    dropdownContent.style.display = "none";
+  }
+});
+
   // **Submit Review**
   submitButton?.addEventListener("click", async () => {
     const name = reviewerName.value.trim();
