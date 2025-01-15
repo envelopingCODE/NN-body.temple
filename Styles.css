@@ -1733,7 +1733,7 @@ color: blue;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-weight: 700;
+    font-weight: 750;
     letter-spacing: 0.5x;
     border: none;
     border-radius: 8px;
@@ -1769,7 +1769,7 @@ color: blue;
 .dropbtn:active {
     transform: scale(0.98);
     animation: none;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.5px;
     border: none;
     border-radius: 8px;
