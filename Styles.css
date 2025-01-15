@@ -27,7 +27,7 @@ body, html {
     opacity: 0;
     transform: translateY(20px);
     animation: signatureAppear 0.5s ease forwards,
-               signatureWrite 3.4s ease forwards;
+               signatureWrite 4s ease forwards;
 }
 
 
