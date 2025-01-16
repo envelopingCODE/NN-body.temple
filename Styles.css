@@ -2672,6 +2672,7 @@ border-bottom: cyan;
     right: 50%;
     transform: translateX(50%);
     bottom: 16px;
+    
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -2707,7 +2708,7 @@ border-bottom: cyan;
 
 /* Horizontal mode adjustments for options */
 .social-float.horizontal .social-options {
-
+    position: static;
     bottom: 10px;
     flex-direction: row;
     opacity: 1;
