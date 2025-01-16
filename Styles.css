@@ -1890,6 +1890,72 @@ color: blue;
     background: rgba(255, 255, 255, 0.08);
 }
 
+
+/* Signal styling */
+#SIG {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 8px;
+    background-image: linear-gradient(90deg,
+        rgba(3, 112, 243, 0.048),
+        rgba(0, 93, 219, 0.03)
+    );
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Signal styling */
+#SIG {
+    background: rgba(255, 255, 255, 0.05);
+    color: #0063DB;
+    border-radius: 8px;
+    margin: 8px;
+    background-image: linear-gradient(90deg,
+        rgba(3, 112, 243, 0.048),
+        rgba(0, 93, 219, 0.03)
+    );
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#SIG span {
+    background: linear-gradient(90deg, #3A76F0, #0063DB);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+}
+
+
+
+#SIG:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#SIG:hover {
+    background-image: linear-gradient(90deg,
+        rgba(3, 112, 243, 0.08),
+        rgba(0, 93, 219, 0.06)
+    );
+}
+
+/* Shared hover effect for icon */
+#SIG svg {
+    transition: transform 0.2s ease;
+}
+
+#SIG:hover svg {
+    transform: scale(1.1);
+}
+
+/* Shared hover effect for icon */
+#SIG svg {
+    transition: transform 0.2s ease;
+}
+
+#SIG:hover svg {
+    transform: scale(1.1);
+}
+
 .dropbtn .emoji {
     font-size: 1.4em;
     line-height: 1;
@@ -2541,3 +2607,39 @@ border-bottom: cyan;
 }
 
 
+/* Signal specific styling */
+.app-button.signal {
+    background: rgba(47, 128, 237, 0.15);
+}
+
+.app-button.signal svg {
+    fill: #2F80ED;
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Match the horizontal layout adjustments */
+.social-float.horizontal .app-button.signal {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+}
+
+.social-float.horizontal .app-button.signal svg {
+    fill: #2F80ED;
+}
+
+/* Match the mobile optimizations */
+@media (max-width: 768px) {
+    .app-button.signal {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-float.horizontal .app-button.signal {
+        width: 35px;
+        height: 35px;
+    }
+}

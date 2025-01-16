@@ -60,9 +60,25 @@
              Book Your Massage
          </button>
          
+
+         
          <div class="dropdown-content">
+
+             <!-- Telegram Link -->
+             <a id="TEL" href="https://t.me/thetemplewellness">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     width="16" 
+                     height="16" 
+                     fill="currentColor" 
+                     class="bi bi-telegram" 
+                     viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+                </svg>
+                <span>Telegram</span>
+            </a>
+
              <!-- WhatsApp Link -->
-             <a id="WA" href="https://wa.me/yournumber">
+             <a id="WA" href="https://wa.me/3165363244">
                  <svg xmlns="http://www.w3.org/2000/svg" 
                       width="16" 
                       height="16" 
@@ -73,19 +89,24 @@
                  </svg>
                  <span>WhatsApp</span>
              </a>
-     
-             <!-- Telegram Link -->
-             <a id="TEL" href="https://t.me/thetemplewellness">
-                 <svg xmlns="http://www.w3.org/2000/svg" 
-                      width="16" 
-                      height="16" 
-                      fill="currentColor" 
-                      class="bi bi-telegram" 
-                      viewBox="0 0 16 16">
-                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
-                 </svg>
-                 <span>Telegram</span>
-             </a>
+
+                
+
+    <!-- Signal Link -->
+    <a id="SIG" href="https://signal.me/#naturallynate.01">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+            width="16" 
+            height="16" 
+            fill="currentColor" 
+            class="bi bi-telegram" 
+            viewBox="0 0 16 16">
+            <path d="M8 1.5a6.5 6.5 0 0 0-6.498 6.502 6.5 6.5 0 0 0 .998 3.455l-.625 2.668L4.54 13.5a6.502 6.502 0 0 0 6.93-11A6.5 6.5 0 0 0 8 1.5m3.915 12.08-.384-.64a7.2 7.2 0 0 1-2.007.831l.18.728a8 8 0 0 0 2.211-.919m3.336-5.58-.728-.18a7.3 7.3 0 0 1-.832 2.012l.643.387a8 8 0 0 0 .917-2.219"/>
+        </svg>
+        <span>Signal</span>
+    </a>
+        
+            
+
          </div>
      </div>
                  </ul>
@@ -108,18 +129,196 @@
     </div>
     
     <!-- Content Section part 1: Intro -->
+<!-- Parent chat bubble container -->
 <div class="social-float">
-    <a href="https://wa.me/yournumber" class="app-button whatsapp" data-tooltip="Chat on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592"/>
-        </svg>
-    </a>
+    <!-- Main bubble that triggers expansion -->
+    <button class="chat-bubble" aria-label="Open chat options" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-fill" viewBox="0 0 16 16">
+            <path d="M14 0a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+          </svg>
+    </button>
     
-    <a href="https://t.me/thetemplewellness" class="app-button telegram" data-tooltip="Chat on Telegram">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
-        </svg>
-    </a>
+    <!-- Social media options container -->
+    <div class="social-options">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/+3165363244" class="social-option whatsapp" data-tooltip="Chat on WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47"/>
+            </svg>
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://t.me/thetemplewellness" class="social-option telegram" data-tooltip="Chat on Telegram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+            </svg>
+        </a>
+        
+        <!-- Signal -->
+        <a href="https://signal.me/#NaturallyNate.01" class="social-option signal" data-tooltip="Chat on Signal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M8 1.5a6.5 6.5 0 0 0-6.498 6.502 6.5 6.5 0 0 0 .998 3.455l-.625 2.668L4.54 13.5a6.502 6.502 0 0 0 6.93-11A6.5 6.5 0 0 0 8 1.5m3.915 12.08-.384-.64a7.2 7.2 0 0 1-2.007.831l.18.728a8 8 0 0 0 2.211-.919m3.336-5.58-.728-.18a7.3 7.3 0 0 1-.832 2.012l.643.387a8 8 0 0 0 .917-2.219"/>
+            </svg>
+        </a>
+    </div>
+</div>
+
+<style>
+/* Container styling */
+.social-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Main chat bubble */
+.chat-bubble {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ffe500, #00000059);
+    color: aliceblue;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-bubble:hover {
+    transform: scale(1.1);
+}
+
+.chat-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* Social options container */
+.social-options {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Individual social options */
+.social-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Platform-specific colors */
+.social-option.whatsapp svg {
+    fill: #25D366;
+}
+
+.social-option.telegram svg {
+    fill: #0088cc;
+}
+
+.social-option.signal svg {
+    fill: #3A76F0;
+}
+
+/* SVG sizing */
+.social-option svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+/* Hover effects */
+.social-option:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.social-option:hover svg {
+    transform: scale(1.1);
+}
+
+/* Expanded state */
+.chat-bubble[aria-expanded="true"] {
+    transform: rotate(45deg);
+}
+
+.chat-bubble[aria-expanded="true"] + .social-options {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* Tooltip */
+.social-option::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 50px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.social-option:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .social-option::before {
+        display: none;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatBubble = document.querySelector('.chat-bubble');
+    let isExpanded = false;
+
+    chatBubble.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        chatBubble.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.social-float') && isExpanded) {
+            isExpanded = false;
+            chatBubble.setAttribute('aria-expanded', false);
+        }
+    });
+});
+</script>
+</a>
 </div>
 <section id="one">
     
