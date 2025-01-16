@@ -598,7 +598,9 @@ document.addEventListener('DOMContentLoaded', function() {
       dropdownContent.classList.remove('show');
       isOpen = false;
   }
-});document.addEventListener('DOMContentLoaded', function() {
+});
+
+document.addEventListener('DOMContentLoaded', function() {
   const socialFloat = document.querySelector('.social-float');
   const openMenuBtn = document.getElementById('open-menu');
   const closeMenuBtn = document.getElementById('close-menu');
@@ -606,23 +608,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const finisherSection = document.getElementById('finisher');
 
   // Function to check if an element is in view
-  function isElementInView(element) {
-    if (!element) return false;
-    const rect = element.getBoundingClientRect();
-    return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.bottom >= 0
-    );
-  }
+ // Function to check if an element is in view with a threshold
+function isElementInView(element, threshold = 0.5) {
+  if (!element) return false;
+  const rect = element.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  
+  // Calculate the visible percentage of the element
+  const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+  const elementHeight = rect.height;
+  
+  // Check if the visible portion meets or exceeds the threshold
+  return (visibleHeight / elementHeight) >= threshold;
+}
 
-  // Function to handle scroll and update social buttons layout
-  function handleScroll() {
-    if (isElementInView(finisherSection)) {
-      socialFloat.classList.add('horizontal');
-    } else {
-      socialFloat.classList.remove('horizontal');
-    }
+// Function to handle scroll and update social buttons layout
+function handleScroll() {
+  // Use a higher threshold (e.g., 0.7 means 70% of the finisher section must be in view)
+  if (isElementInView(finisherSection, 0.7)) {
+    socialFloat.classList.add('horizontal');
+  } else {
+    socialFloat.classList.remove('horizontal');
   }
+}
 
   // Function to hide social buttons
   function hideSocialButtons() {

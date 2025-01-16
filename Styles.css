@@ -1956,7 +1956,7 @@ color: blue;
 /* Horizontal layout */
 .social-float.horizontal {
     flex-direction: row;
-    background: rgba(255, 255, 255, 0.1);
+     background: rgba(255, 255, 255, 0.1);
     border-radius: 50px;
     padding: 8px;
     gap: 12px;
@@ -1998,7 +1998,7 @@ color: blue;
 
 /* Semi-transparent backgrounds */
 .app-button.whatsapp {
-    background: rgba(37, 211, 102, 0.15);
+    background: rgba(37, 211, 101, 0.047);
 }
 .app-button.telegram {
     background: rgba(0, 136, 204, 0.15);
@@ -2074,4 +2074,48 @@ color: blue;
 
 .btn-return-top:hover {
     background-color: #444; /* Dark gray hover color */
+}
+
+/* Desktop message overlay - hidden by default */
+.desktop-message {
+    display: none;
+}
+
+/* Show message only on screens wider than 820px */
+@media screen and (min-width: 820px) {
+    .desktop-message {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .desktop-message h2 {
+        color: rgb(0, 255, 200);
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-shadow: #333333 0px 3px 5px;  /* Matching your existing text shadow style */
+    }
+
+    .desktop-message p {
+        font-size: 1.2em;
+        max-width: 600px;
+        line-height: 1.6;
+        text-shadow: #333333 1px 1px 6px;  /* Matching your existing text shadow style */
+    }
+
+    /* Hide the main scroll container on desktop */
+    #scroll-container {
+        display: none;
+    }
 }
