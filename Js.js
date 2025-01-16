@@ -599,80 +599,83 @@ document.addEventListener('DOMContentLoaded', function() {
       isOpen = false;
   }
 });
-
 document.addEventListener('DOMContentLoaded', function() {
+  // Our main characters: the key elements we'll be working with
   const socialFloat = document.querySelector('.social-float');
   const openMenuBtn = document.getElementById('open-menu');
   const closeMenuBtn = document.getElementById('close-menu');
   const navMenu = document.getElementById('nav-menu');
   const finisherSection = document.getElementById('finisher');
+  const oneSection = document.getElementById('one');
 
-  // Function to check if an element is in view
- // Function to check if an element is in view with a threshold
-function isElementInView(element, threshold = 0.5) {
-  if (!element) return false;
-  const rect = element.getBoundingClientRect();
-  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-  
-  // Calculate the visible percentage of the element
-  const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-  const elementHeight = rect.height;
-  
-  // Check if the visible portion meets or exceeds the threshold
-  return (visibleHeight / elementHeight) >= threshold;
-}
-
-// Function to handle scroll and update social buttons layout
-function handleScroll() {
-  // Use a higher threshold (e.g., 0.7 means 70% of the finisher section must be in view)
-  if (isElementInView(finisherSection, 0.7)) {
-    socialFloat.classList.add('horizontal');
-  } else {
-    socialFloat.classList.remove('horizontal');
+  // The Observer: Checks if an element is visible
+  function isElementInView(element, threshold = 0.5) {
+      if (!element) return false;
+      const rect = element.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+      const elementHeight = rect.height;
+      return (visibleHeight / elementHeight) >= threshold;
   }
-}
 
-  // Function to hide social buttons
-  function hideSocialButtons() {
-    socialFloat.classList.add('hidden');
-    socialFloat.classList.remove('horizontal');
-  }
- 
-  // Function to show social buttons
-  function showSocialButtons() {
-    // Small delay to make appearance smoother
-    setTimeout(() => {
-      socialFloat.classList.remove('hidden');
-      // Don't automatically add horizontal class
-      // Only add it if finisher section is in view
-      if (isElementInView(finisherSection)) {
-        socialFloat.classList.add('horizontal');
+  // The Navigator: Handles scroll events and updates button layout
+  function handleScroll() {
+      // First, check if section "one" is in view
+      if (isElementInView(oneSection, 0.3)) {
+          socialFloat.classList.add('hidden');
+          return; // Exit early if we're in section one
       }
-    }, 300);
+
+      // If we're not in section one, check the finisher section
+      if (isElementInView(finisherSection, 0.7)) {
+          socialFloat.classList.remove('hidden');
+          socialFloat.classList.add('horizontal');
+      } else {
+          socialFloat.classList.remove('hidden');
+          socialFloat.classList.remove('horizontal');
+      }
   }
- 
-  // Hide buttons when opening menu
+
+  // The Guardians: Control button visibility
+  function hideSocialButtons() {
+      socialFloat.classList.add('hidden');
+      socialFloat.classList.remove('horizontal');
+  }
+
+  function showSocialButtons() {
+      // Don't show buttons if we're in section one
+      if (isElementInView(oneSection, 0.3)) {
+          return;
+      }
+      
+      setTimeout(() => {
+          socialFloat.classList.remove('hidden');
+          if (isElementInView(finisherSection)) {
+              socialFloat.classList.add('horizontal');
+          }
+      }, 300);
+  }
+
+  // Event Listeners: Our story's triggers
   openMenuBtn.addEventListener('click', hideSocialButtons);
- 
-  // Show buttons when closing menu
   closeMenuBtn.addEventListener('click', showSocialButtons);
- 
-  // Add scroll event listener
   window.addEventListener('scroll', handleScroll);
- 
-  // Additional safety: handle click outside nav to show buttons
+
+  // Additional safety measures
   document.addEventListener('click', function(event) {
-    if (!navMenu.contains(event.target) &&
-        !openMenuBtn.contains(event.target) &&
-        navMenu.style.display !== 'none') {
-      showSocialButtons();
-    }
+      if (!navMenu.contains(event.target) &&
+          !openMenuBtn.contains(event.target) &&
+          navMenu.style.display !== 'none') {
+          showSocialButtons();
+      }
   });
- 
-  // Optional: Handle escape key
+
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && navMenu.style.display !== 'none') {
-      showSocialButtons();
-    }
+      if (event.key === 'Escape' && navMenu.style.display !== 'none') {
+          showSocialButtons();
+      }
   });
+
+  // Initial check on page load
+  handleScroll();
 });

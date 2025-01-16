@@ -2192,6 +2192,19 @@ color: blue;
     transform: rotate(45deg);
 }
 
+/* Pulse animation for the start button */
+@keyframes pulse2 {
+    0% {
+        box-shadow: 0 0 0 0 rgba(26, 221, 179, 0.037);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 200, 0.024);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 200, 0.12);
+    }
+}
+
 /* Vertical treatments link */
 .vertical-treatments-link {
     position: absolute;
@@ -2201,14 +2214,15 @@ color: blue;
     writing-mode: vertical-lr;
     transform-origin: left center;
     padding: 20px 8px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.195), rgba(0, 0, 0, 0.061));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.084), rgba(0, 0, 0, 0.061));
     color: rgb(140, 172, 165);
     text-decoration: none;
     border-radius: 0 8px 8px 0;
     font-size: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     transition: all 0.3s ease;
     border-bottom: none;
+    animation: pulse2 4s infinite;
     
 }
 
@@ -2220,7 +2234,7 @@ border-bottom: cyan;
 
 .vertical-treatments-link:hover {
     padding-left: 12px;
-    background: linear-gradient(to bottom, rgba(0, 255, 200, 0.2), rgba(0, 255, 200, 0.3));
+    background: linear-gradient(to bottom, rgba(0, 255, 200, 0.2), cyan);
 }
 
 /* Add relative positioning to the container */
@@ -2408,18 +2422,26 @@ border-bottom: cyan;
 }
 
 
+.oils-title {
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: rgba(44, 200, 174, 0.084);
+    border-radius: 24px;
+    width: 100%;
+}
 
 .oils-showcase {
     margin-top: 40px;
     padding: 20px 15px;
-    background: rgba(0, 255, 200, 0.03);
+    background: rgba(6, 78, 62, 0);
     border-radius: 24px;
     width: 100%;
 }
 
 .oil-badges-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
     width: 100%;
     padding: 5px;
@@ -2517,3 +2539,5 @@ border-bottom: cyan;
         height: 35px;
     }
 }
+
+
