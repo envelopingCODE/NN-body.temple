@@ -598,4 +598,73 @@ document.addEventListener('DOMContentLoaded', function() {
       dropdownContent.classList.remove('show');
       isOpen = false;
   }
+});document.addEventListener('DOMContentLoaded', function() {
+  const socialFloat = document.querySelector('.social-float');
+  const openMenuBtn = document.getElementById('open-menu');
+  const closeMenuBtn = document.getElementById('close-menu');
+  const navMenu = document.getElementById('nav-menu');
+  const finisherSection = document.getElementById('finisher');
+
+  // Function to check if an element is in view
+  function isElementInView(element) {
+    if (!element) return false;
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+
+  // Function to handle scroll and update social buttons layout
+  function handleScroll() {
+    if (isElementInView(finisherSection)) {
+      socialFloat.classList.add('horizontal');
+    } else {
+      socialFloat.classList.remove('horizontal');
+    }
+  }
+
+  // Function to hide social buttons
+  function hideSocialButtons() {
+    socialFloat.classList.add('hidden');
+    socialFloat.classList.remove('horizontal');
+  }
+ 
+  // Function to show social buttons
+  function showSocialButtons() {
+    // Small delay to make appearance smoother
+    setTimeout(() => {
+      socialFloat.classList.remove('hidden');
+      // Don't automatically add horizontal class
+      // Only add it if finisher section is in view
+      if (isElementInView(finisherSection)) {
+        socialFloat.classList.add('horizontal');
+      }
+    }, 300);
+  }
+ 
+  // Hide buttons when opening menu
+  openMenuBtn.addEventListener('click', hideSocialButtons);
+ 
+  // Show buttons when closing menu
+  closeMenuBtn.addEventListener('click', showSocialButtons);
+ 
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScroll);
+ 
+  // Additional safety: handle click outside nav to show buttons
+  document.addEventListener('click', function(event) {
+    if (!navMenu.contains(event.target) &&
+        !openMenuBtn.contains(event.target) &&
+        navMenu.style.display !== 'none') {
+      showSocialButtons();
+    }
+  });
+ 
+  // Optional: Handle escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && navMenu.style.display !== 'none') {
+      showSocialButtons();
+    }
+  });
 });

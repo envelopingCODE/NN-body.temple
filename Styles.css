@@ -1723,8 +1723,6 @@ color: blue;
     }
 }
 
-
-
 .dropbtn {
     width: 220px;
     background: linear-gradient(90deg, #53ffb2, #107d8ee2);
@@ -1746,10 +1744,12 @@ color: blue;
     animation: 
                soft-pulse 6s infinite cubic-bezier(0.6, 0, 0.4, 1);
      margin: auto;
-     text-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.15);
                
+}
+
+.dropbtn.loading {
+    cursor: wait;
+    opacity: 0.8;
 }
 
 .dropbtn::before {
@@ -1932,3 +1932,146 @@ color: blue;
     fill: #0088cc;
 }
 
+
+.social-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+    padding: 4px;
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    /* Default vertical layout */
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Horizontal layout */
+.social-float.horizontal {
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 8px;
+    gap: 12px;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Hidden state */
+.social-float.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100px);
+}
+
+/* Buttons in both vertical and horizontal layouts */
+.app-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Horizontal layout button adjustments */
+.social-float.horizontal .app-button {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+}
+
+/* Semi-transparent backgrounds */
+.app-button.whatsapp {
+    background: rgba(37, 211, 102, 0.15);
+}
+.app-button.telegram {
+    background: rgba(0, 136, 204, 0.15);
+}
+
+/* Horizontal layout icon color adjustment */
+.social-float.horizontal .app-button.whatsapp svg {
+    fill: #25D366;
+}
+.social-float.horizontal .app-button.telegram svg {
+    fill: #0088cc;
+}
+
+/* Smaller, subtle icons */
+.app-button svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+/* WhatsApp icon color */
+.app-button.whatsapp svg {
+    fill: #25D366;
+}
+
+/* Telegram icon color */
+.app-button.telegram svg {
+    fill: #0088cc;
+}
+
+/* Subtle hover effect */
+.app-button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.app-button:hover svg {
+    transform: scale(1.1);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .social-float {
+        bottom: 16px;
+        right: 16px;
+        gap: 6px;
+    }
+    
+    .social-float.horizontal {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    
+    .app-button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-float.horizontal .app-button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+.btn-return-top {
+    background-color: #333; /* Dark gray background */
+    color: #fff; /* White text color */
+    border-radius: 50px; /* Rounded corners for button-like appearance */
+    padding: 10px; /* Some padding to make the link look more like a button */
+    cursor: pointer; /* Change the cursor shape to a pointer */
+    transition: background-color 0.3s ease-in-out; /* Add some animation effects */
+}
+
+.btn-return-top:hover {
+    background-color: #444; /* Dark gray hover color */
+}
