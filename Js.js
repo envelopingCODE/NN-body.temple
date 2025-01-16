@@ -554,13 +554,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 });
-
 document.addEventListener('DOMContentLoaded', function() {
+  // Get dropdown elements for the book/SoMe menu
   const dropdownBtn = document.querySelector('.dropbtn');
   const dropdownContent = document.querySelector('.dropdown-content');
   let isOpen = false;
 
-  // Toggle dropdown on button click
+  // Handle dropdown menu toggling
   dropdownBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       if (!isOpen) {
@@ -577,17 +577,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  // Close dropdown when pressing Escape key
+  // Close dropdown with Escape key
   document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && isOpen) {
           hideDropdown();
       }
   });
 
+  // Functions to handle dropdown visibility
   function showDropdown() {
       dropdownContent.classList.add('show');
       isOpen = true;
-      // Optional: animate the button
+      // Optional animation effect on the button
       dropdownBtn.style.transform = 'scale(0.98)';
       setTimeout(() => {
           dropdownBtn.style.transform = 'scale(1)';
@@ -599,76 +600,108 @@ document.addEventListener('DOMContentLoaded', function() {
       isOpen = false;
   }
 });
+
+// Social Float Functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Our main characters: the key elements we'll be working with
-  const socialFloat = document.querySelector('.social-float');
-  const openMenuBtn = document.getElementById('open-menu');
-  const closeMenuBtn = document.getElementById('close-menu');
-  const navMenu = document.getElementById('nav-menu');
-  const finisherSection = document.getElementById('finisher');
-  const oneSection = document.getElementById('one');
+    // Get all our necessary elements
+    const socialFloat = document.querySelector('.social-float');
+    const chatBubble = document.querySelector('.chat-bubble');
+    const socialOptions = document.querySelector('.social-options');
+    const openMenuBtn = document.getElementById('open-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const navMenu = document.getElementById('nav-menu');
+    const finisherSection = document.getElementById('finisher');
+    const oneSection = document.getElementById('one');
+ 
+    // Helper function to check if element is in viewport
+    function isElementInView(element, threshold = 0.5) {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        const elementHeight = rect.height;
+        return (visibleHeight / elementHeight) >= threshold;
+    }
 
-  // The Observer: Checks if an element is visible
-  function isElementInView(element, threshold = 0.5) {
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-      const elementHeight = rect.height;
-      return (visibleHeight / elementHeight) >= threshold;
-  }
+    // Our scroll handler function for managing social float visibility
+    function handleScroll() {
+        // First check if we're in section "one"
+        if (isElementInView(oneSection, 0.3)) {
+            socialFloat.classList.add('hidden');
+            return;
+        }
 
-  // The Navigator: Handles scroll events and updates button layout
-  function handleScroll() {
-      // First, check if section "one" is in view
-      if (isElementInView(oneSection, 0.3)) {
-          socialFloat.classList.add('hidden');
-          return; // Exit early if we're in section one
-      }
+        // If not in section one, show the social float
+        socialFloat.classList.remove('hidden');
 
-      // If we're not in section one, check the finisher section
-      if (isElementInView(finisherSection, 0.7)) {
-          socialFloat.classList.remove('hidden');
-          socialFloat.classList.add('horizontal');
-      } else {
-          socialFloat.classList.remove('hidden');
-          socialFloat.classList.remove('horizontal');
-      }
-  }
+        // Check if we're in finisher section
+        if (isElementInView(finisherSection, 0.7)) {
+            socialFloat.classList.remove('hidden');
+            socialFloat.classList.add('horizontal');
+            
+            // Hide the chat bubble and ensure social options are visible
+            if (chatBubble) {
+                chatBubble.style.display = 'none';
+            }
+            if (socialOptions) {
+                socialOptions.classList.add('show');
+            }
+        } else {
+            socialFloat.classList.remove('horizontal');
+            
+            // Show the chat bubble and reset social options visibility
+            if (chatBubble) {
+                chatBubble.style.display = 'flex';
+            }
+            if (socialOptions) {
+                socialOptions.classList.remove('show');
+            }
+        }
+    }
 
-  // The Guardians: Control button visibility
-  function hideSocialButtons() {
-      socialFloat.classList.add('hidden');
-      socialFloat.classList.remove('horizontal');
-  }
+    // Functions to control social buttons visibility
+    function hideSocialButtons() {
+        socialFloat.classList.add('hidden');
+        socialFloat.classList.remove('horizontal');
+    }
 
-  function showSocialButtons() {
-      // Don't show buttons if we're in section one
-      if (isElementInView(oneSection, 0.3)) {
-          return;
-      }
-      
-      setTimeout(() => {
-          socialFloat.classList.remove('hidden');
-          if (isElementInView(finisherSection)) {
-              socialFloat.classList.add('horizontal');
-          }
-      }, 300);
-  }
+    function showSocialButtons() {
+        // Don't show buttons if in section one
+        if (isElementInView(oneSection, 0.3)) {
+            return;
+        }
+        
+        setTimeout(() => {
+            socialFloat.classList.remove('hidden');
+            if (isElementInView(finisherSection)) {
+                socialFloat.classList.add('horizontal');
+            }
+        }, 300);
+    }
 
-  // Event Listeners: Our story's triggers
-  openMenuBtn.addEventListener('click', hideSocialButtons);
-  closeMenuBtn.addEventListener('click', showSocialButtons);
-  window.addEventListener('scroll', handleScroll);
+    // Set up all event listeners
+    openMenuBtn.addEventListener('click', hideSocialButtons);
+    closeMenuBtn.addEventListener('click', showSocialButtons);
+    window.addEventListener('scroll', handleScroll);
 
-  // Additional safety measures
-  document.addEventListener('click', function(event) {
-      if (!navMenu.contains(event.target) &&
-          !openMenuBtn.contains(event.target) &&
-          navMenu.style.display !== 'none') {
-          showSocialButtons();
-      }
-  });
+    // Additional safety measures for menu interactions
+    document.addEventListener('click', function(event) {
+        if (!navMenu.contains(event.target) &&
+            !openMenuBtn.contains(event.target) &&
+            navMenu.style.display !== 'none') {
+            showSocialButtons();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && navMenu.style.display !== 'none') {
+            showSocialButtons();
+        }
+    });
+
+    // Initialize social float position on page load
+    handleScroll();
+});
 
   document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape' && navMenu.style.display !== 'none') {
@@ -676,6 +709,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  // Initial check on page load
-  handleScroll();
+
+
+// Form field focus handling
+document.querySelectorAll('input, textarea').forEach((field) => {
+  field.addEventListener('focus', (event) => {
+      setTimeout(() => {
+          event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300); // Delay to ensure keyboard is fully open
+  });
 });

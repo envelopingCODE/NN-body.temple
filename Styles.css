@@ -2643,3 +2643,106 @@ border-bottom: cyan;
         height: 35px;
     }
 }
+
+.social-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+    padding: 4px;
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Horizontal mode styles */
+.social-float.horizontal {
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 10px;
+    gap: 12px;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Hidden state */
+.social-float.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100px);
+}
+
+/* Options container */
+.social-options {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Show state for options */
+.social-options.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* Horizontal mode adjustments for options */
+.social-float.horizontal .social-options {
+
+    bottom: 10px;
+    flex-direction: row;
+    opacity: 1;
+    transform: none;
+    pointer-events: all;
+}
+
+/* Platform-specific styling */
+.social-option.whatsapp svg {
+    fill: #25D366;
+}
+
+.social-option.telegram svg {
+    fill: #0088cc;
+}
+
+.social-option.signal svg {
+    fill: #3A76F0;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .social-float {
+        bottom: 16px;
+        right: 16px;
+        gap: 6px;
+    }
+    
+    .social-float.horizontal {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    
+    .social-option {
+        width: 35px;
+        height: 35px;
+    }
+}
