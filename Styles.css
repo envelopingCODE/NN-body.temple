@@ -2739,6 +2739,7 @@ border-bottom: cyan;
     
     .social-float.horizontal {
         right: 50%;
+        fill: none;
         transform: translateX(50%);
     }
     
