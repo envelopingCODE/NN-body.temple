@@ -1,5 +1,19 @@
 "use strict"; // Use strict mode for better error checking and debugging
 
+// ===== EASY CONFIGURATION SECTION =====
+// Supports multiple formats:
+// - Time range: "15-18" (creates hourly slots from 15:00 to 18:00)
+// - Individual times: "15, 16:30, 17"
+// - Mix both: "15-17, 18:30"
+const AVAILABLE_SLOTS = [
+  "18.01 17, 18",                    // Range: will create 15:00, 16:00, 17:00, 18:00
+  "19.01 15:30, 16-18",            // Mix of specific time and range
+  "20.01 15:30, 16:30, 17-18:30"   // Mix of specific times and range with half hour
+];
+
+// ===== END OF CONFIGURATION =====
+
+
 // DOM Declarations
 const openMenuButtonEl = document.getElementById("open-menu");
 const closeMenuButtonEl = document.getElementById("close-menu");
@@ -719,3 +733,163 @@ document.querySelectorAll('input, textarea').forEach((field) => {
       }, 300); // Delay to ensure keyboard is fully open
   });
 });
+
+
+
+
+// Function to expand time range
+function expandTimeRange(rangeStr) {
+  const [start, end] = rangeStr.split('-').map(t => t.trim());
+  const startHour = parseInt(start.split(':')[0]);
+  const endTime = end.includes(':') ? end : `${end}:00`;
+  const [endHour, endMinutes] = endTime.split(':').map(n => parseInt(n));
+  
+  const times = [];
+  for (let hour = startHour; hour <= endHour; hour++) {
+      if (hour === endHour && endMinutes === 0) {
+          times.push(`${hour}:00`);
+      } else if (hour < endHour) {
+          times.push(`${hour}:00`);
+      }
+  }
+  
+  // Add the end time if it's not on the hour
+  if (endMinutes > 0) {
+      times.push(endTime);
+  }
+  
+  return times;
+}
+
+// Function to format time properly
+function formatTime(timeStr) {
+  // Add ":00" if only hours are provided
+  if (!timeStr.includes(':')) {
+      timeStr = timeStr + ':00';
+  }
+  // Ensure two digits for hours
+  const [hours, minutes] = timeStr.split(':');
+  return `${hours.padStart(2, '0')}:${minutes}`;
+}
+
+// Function to parse time string (handles both ranges and individual times)
+function parseTimeString(timeStr) {
+  if (timeStr.includes('-')) {
+      return expandTimeRange(timeStr);
+  }
+  return [formatTime(timeStr.trim())];
+}
+
+// Function to parse slot string
+function parseSlotString(slotStr) {
+  const [dateStr, timesStr] = slotStr.split(' ');
+  const timeSegments = timesStr.split(',').map(t => t.trim());
+  
+  const times = timeSegments.flatMap(segment => parseTimeString(segment));
+  return {
+      date: dateStr,
+      times: [...new Set(times)].sort() // Remove duplicates and sort
+  };
+}
+
+// Function to convert date string to Date object
+function parseDate(dateStr) {
+  const [day, month] = dateStr.split('.');
+  const year = new Date().getFullYear();
+  return new Date(year, parseInt(month) - 1, parseInt(day));
+}
+
+// Function to get relative date string
+function getRelativeDateString(date) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const targetDate = new Date(date);
+  targetDate.setHours(0, 0, 0, 0);
+  
+  const diffDays = Math.floor((targetDate - today) / (1000 * 60 * 60 * 24));
+  
+  switch (diffDays) {
+      case 0: return "Today";
+      case 1: return "Tomorrow";
+      case 2: return "Day After Tomorrow";
+      default:
+          return targetDate.toLocaleDateString('en-US', { 
+              weekday: 'long', 
+              month: 'short', 
+              day: 'numeric' 
+          });
+  }
+}
+
+// Function to generate all slots
+function generateSlots() {
+  const slots = [];
+  AVAILABLE_SLOTS.forEach(slotStr => {
+      const { date, times } = parseSlotString(slotStr);
+      const dateObj = parseDate(date);
+      
+      times.forEach(time => {
+          slots.push({
+              time: time,
+              date: dateObj
+          });
+      });
+  });
+  return slots;
+}
+// Function to update available slots
+function updateAvailableSlots() {
+  const slots = generateSlots();
+  const slotList = document.getElementById('slot-list');
+  const container = document.querySelector('.slots-container');
+  slotList.innerHTML = '';
+
+  slots.forEach((slot, index) => {
+      const slotElement = document.createElement('div');
+      slotElement.className = 'slot-item';
+      slotElement.style.setProperty('--index', index);
+      const relativeDate = getRelativeDateString(slot.date);
+      slotElement.innerHTML = `
+          <span class="slot-time">${slot.time}</span>
+          <span class="slot-date">${relativeDate}</span>
+      `;
+      slotElement.onclick = () => {
+          console.log(`Selected slot: ${slot.time} on ${slot.date.toDateString()}`);
+      };
+      slotList.appendChild(slotElement);
+  });
+
+  // Hide expand button if there are 2 or fewer slots
+  const expandButton = document.getElementById('expand-button');
+  expandButton.style.display = slots.length <= 2 ? 'none' : 'flex';
+}
+
+// Initialize slots and expand functionality
+document.addEventListener('DOMContentLoaded', () => {
+  updateAvailableSlots();
+
+  const expandButton = document.getElementById('expand-button');
+  const container = document.querySelector('.slots-container');
+  const slotList = document.getElementById('slot-list');
+
+  expandButton.addEventListener('click', () => {
+      container.classList.toggle('expanded');
+      slotList.classList.toggle('collapsed');
+      
+      if (container.classList.contains('expanded')) {
+          expandButton.querySelector('.expand-text').textContent = 'Show less';
+      } else {
+          expandButton.querySelector('.expand-text').textContent = 'View more times';
+      }
+  });
+});
+
+// Update the display every day at midnight
+setInterval(() => {
+  const now = new Date();
+  if (now.getHours() === 0 && now.getMinutes() === 0) {
+      updateAvailableSlots();
+  }
+}, 60000);
+
