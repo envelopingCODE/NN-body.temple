@@ -6,9 +6,9 @@
 // - Individual times: "15, 16:30, 17"
 // - Mix both: "15-17, 18:30"
 const AVAILABLE_SLOTS = [
-  "18.01 17-18",                    // Range: will create 15:00, 16:00, 17:00, 18:00
-  "19.01 15:30, 16-18",            // Mix of specific time and range
-  "20.01 15:30, 16:30, 17-18:30"   // Mix of specific times and range with half hour
+  "18.01 17-18",                    // Creates slots for 15:00, 16:00, 17:00, 18:00
+  "19.01 14:30, 16-18",            // One specific time + range
+  "20.01 15-17, 18:30"             // Range + specific time
 ];
 
 // ===== END OF CONFIGURATION =====
