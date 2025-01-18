@@ -6,8 +6,7 @@
 // - Individual times: "15, 16:30, 17"
 // - Mix both: "15-17, 18:30"
 const AVAILABLE_SLOTS = [
-  "18.01 17-18",                    // Creates slots for 15:00, 16:00, 17:00, 18:00
-  "19.01 14:30, 16-18",            // One specific time + range
+  "19.01 15-17",            // One specific time + range
   "20.01 15-17, 18:30"             // Range + specific time
 ];
 
@@ -107,6 +106,9 @@ openMenuButtonEl.addEventListener('click', () => {
   });
 });
 
+
+
+
 // Our closing sequence
 closeMenuButtonEl.addEventListener('click', () => {
   navMenuEl.classList.remove('active');
@@ -114,6 +116,8 @@ closeMenuButtonEl.addEventListener('click', () => {
   // Wait for animation to complete before hiding
   setTimeout(() => {
     navMenuEl.style.display = 'none';
+
+    
     
     // Reset our menu items to their initial state
     // This is like resetting our actors to their starting positions
@@ -133,6 +137,10 @@ closeMenuButtonEl.addEventListener('click', () => {
     });
   }, 500); // Adjust timeout if needed
 });
+
+
+
+
 
 
   // **Event Delegation for Navigation Links**
@@ -341,6 +349,7 @@ document.querySelectorAll('.star').forEach(star => {
   });
 });
 */
+
 
 
 
