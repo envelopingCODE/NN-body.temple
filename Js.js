@@ -743,9 +743,6 @@ document.querySelectorAll('input, textarea').forEach((field) => {
   });
 });
 
-
-
-
 // Function to expand time range
 function expandTimeRange(rangeStr) {
   const [start, end] = rangeStr.split('-').map(t => t.trim());
@@ -831,7 +828,18 @@ function getRelativeDateString(date) {
   }
 }
 
-// Function to generate all slots
+// Function to check if a slot is in the future
+function isSlotInFuture(dateObj, timeStr) {
+  const now = new Date();
+  const [hours, minutes] = timeStr.split(':').map(num => parseInt(num));
+  
+  const slotTime = new Date(dateObj);
+  slotTime.setHours(hours, minutes, 0, 0);
+  
+  return slotTime > now;
+}
+
+// Function to generate all valid future slots
 function generateSlots() {
   const slots = [];
   AVAILABLE_SLOTS.forEach(slotStr => {
@@ -839,20 +847,31 @@ function generateSlots() {
       const dateObj = parseDate(date);
       
       times.forEach(time => {
-          slots.push({
-              time: time,
-              date: dateObj
-          });
+          // Only add the slot if it's in the future
+          if (isSlotInFuture(dateObj, time)) {
+              slots.push({
+                  time: time,
+                  date: dateObj
+              });
+          }
       });
   });
   return slots;
 }
+
 // Function to update available slots
 function updateAvailableSlots() {
   const slots = generateSlots();
   const slotList = document.getElementById('slot-list');
   const container = document.querySelector('.slots-container');
   slotList.innerHTML = '';
+
+  // Only proceed if there are future slots available
+  if (slots.length === 0) {
+      slotList.innerHTML = '<div class="no-slots-message">No available time slots found</div>';
+      document.getElementById('expand-button').style.display = 'none';
+      return;
+  }
 
   slots.forEach((slot, index) => {
       const slotElement = document.createElement('div');
@@ -892,13 +911,7 @@ document.addEventListener('DOMContentLoaded', () => {
           expandButton.querySelector('.expand-text').textContent = 'View more times';
       }
   });
+
+  // Check for updates every minute
+  setInterval(updateAvailableSlots, 60000);
 });
-
-// Update the display every day at midnight
-setInterval(() => {
-  const now = new Date();
-  if (now.getHours() === 0 && now.getMinutes() === 0) {
-      updateAvailableSlots();
-  }
-}, 60000);
-
