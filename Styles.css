@@ -6,8 +6,15 @@
 }
 
 @font-face {
-    font-family: 'Raleway';
+    font-family: 'Glacial';
     src: url('Fonts/GlacialIndifference-Bold.otf') format('truetype');
+         font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Architex';
+    src: url('Fonts/Evas Signatures.ttf') format('truetype');
          font-weight: normal;
     font-style: normal;
 }
@@ -36,6 +43,13 @@ body, html {
     transform: translateY(20px);
     animation: signatureAppear 0.5s ease forwards,
                signatureWrite 4s ease forwards;
+
+
+               background: linear-gradient(90deg, #42ca76b2, #00ddff);
+               -webkit-background-clip: text;
+               background-clip: text;
+               color: transparent;
+               display: inline-block; /* Ensures the background clip works properly */
 }
 
 
@@ -305,21 +319,25 @@ font-size: 0.8em;
 }
 
 #one h2 {
-    font-family: Raleway;
+    font-family: Glacial;
     font-weight: 900;
     font-size: 1.8em;
     letter-spacing: 1.6px;
      display: inline-block; /* Ensures the background clip works properly */
-    color: rgb(61, 143, 138);
-
+     
+  
+    color: rgba(0, 255, 200, 0.922);
        }
 
+
+       
 .gradientText {
-    
-     font-weight: 800;
-     letter-spacing: 4px;
-   
-     color: rgba(0, 255, 200, 0.922);
+  
+    font-family: Architex;
+     font-weight: 200;
+     font-size: 1.3em;
+     letter-spacing: 6px;
+     color: rgb(255, 255, 255);
 
 
 }
