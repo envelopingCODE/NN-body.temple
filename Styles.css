@@ -99,7 +99,7 @@ html {
 
 /* Disable SnapScroll For legacy SE iphones */
 
-@media screen and (max-height: 699px) {
+@media screen and (max-height: 670px) {
     html { 
         scroll-snap-type: none; /* Disable scroll snap on phones less than 700 pixels high */
 
