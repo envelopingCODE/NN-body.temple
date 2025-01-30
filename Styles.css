@@ -97,6 +97,21 @@ html {
     scroll-snap-type: y mandatory;
 }
 
+/* Disable SnapScroll For legacy SE iphones */
+
+@media screen and (max-height: 699px) {
+    html { 
+        scroll-snap-type: none; /* Disable scroll snap on phones less than 700 pixels high */
+
+        
+section {
+    height: 100vh;
+    scroll-snap-align: none;    
+    scroll-snap-stop: none;
+}
+
+    }
+}
 
 section {
     height: 100vh;
@@ -327,7 +342,11 @@ font-size: 0.8em;
     color: rgba(0, 255, 200, 0.922);
        }
 
-
+    #one h1{
+        margin: auto;
+        display: block;
+        text-align: center;
+    }
        
 .gradientText {
   
@@ -1211,7 +1230,28 @@ color: blue;
   }
   /* Add more nth-child rules as needed */
   
-  #arrow { scale: 0.036; position: absolute;margin: 0%; margin-top:110px;  transform: rotate(90deg);}
+
+  #arrow {
+    width: 40px; /* Fixed width */
+    height: auto;
+    position: relative;
+    display: block;
+    margin: 1rem auto;
+    margin-top: -8%;
+    transform: rotate(90deg);
+    animation: bounce 2s infinite;
+
+}
+
+/* Bounce animation for the arrow */
+@keyframes bounce {
+    0%, 100% {
+        transform: rotate(90deg) translateX(0);
+    }
+    50% {
+        transform: rotate(90deg) translateX(10px);
+    }
+}
 
 
 /* Hide elements initially */
@@ -2365,6 +2405,10 @@ border-bottom: cyan;
 #two {
     position: relative;
 }
+
+/* Add relative positioning to the container */
+
+
 
 /* Updated treatment info styles */
 .treatment-info {
