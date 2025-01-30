@@ -1211,7 +1211,7 @@ color: blue;
   }
   /* Add more nth-child rules as needed */
   
-  #arrow { scale: 0.036; position: absolute;margin: 30%; margin-top:37%;  transform: rotate(90deg);}
+  #arrow { scale: 0.036; position: absolute;margin: 20%; margin-top:130px;  transform: rotate(90deg);}
 
 
 /* Hide elements initially */
@@ -1739,7 +1739,7 @@ color: blue;
 @media (max-width: 768px) {
     .card-container {
         margin: 1rem;
-        padding: 0rem;
+        padding: 1rem;
     }
     
     .cta-button {
