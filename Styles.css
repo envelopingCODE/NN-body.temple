@@ -324,8 +324,6 @@ font-size: 0.8em;
     font-size: 1.8em;
     letter-spacing: 1.6px;
      display: inline-block; /* Ensures the background clip works properly */
-     
-  
     color: rgba(0, 255, 200, 0.922);
        }
 
