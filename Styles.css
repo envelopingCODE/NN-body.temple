@@ -35,7 +35,7 @@ body, html {
 /* Chapter 1: Setting the Stage */
 .handwritten {
     font-family: YourHandWrittenFont, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 2.3em;
+    font-size: 2.6em;
     color: rgb(255, 255, 255);
     position: relative;
     display: inline-block;
@@ -43,7 +43,7 @@ body, html {
     transform: translateY(20px);
     animation: signatureAppear 0.5s ease forwards,
                signatureWrite 4s ease forwards;
-
+    
                 letter-spacing: 6px;
                background: linear-gradient(90deg, #42ca76b2, #00ddff);
                -webkit-background-clip: text;
@@ -321,7 +321,7 @@ font-size: 0.8em;
 #one h2 {
     font-family: Glacial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 900;
-    font-size: 1.4em;
+    font-size: 1.7em;
     letter-spacing: 1.6px;
      display: inline-block; /* Ensures the background clip works properly */
     color: rgba(0, 255, 200, 0.922);
@@ -1739,7 +1739,7 @@ color: blue;
 @media (max-width: 768px) {
     .card-container {
         margin: 1rem;
-        padding: 1rem;
+        padding: 1.8rem;
     }
     
     .cta-button {
