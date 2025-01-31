@@ -114,21 +114,20 @@
          </div>
      </div>
 
-     <div class="available-slots">
+     <div id="nav-slots" class="available-slots">
         <div class="slots-container">
             <h3 class="slots-title">Next Available Slots</h3>
-                <button id="expand-button" class="expand-button">
+            <button id="nav-expand-button" class="expand-button">
                 <span class="expand-text">View more times</span>
                 <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M6 9l6 6 6-6"/>
                 </svg>
             </button>
-            <div id="slot-list" class="slot-list collapsed">
+            <div id="nav-slot-list" class="slot-list collapsed">
                 <!-- Slots will be populated here -->
             </div>
         </div>
     </div>
-    
 
                  </ul>
              </li>
@@ -342,6 +341,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const privacyNotice = document.getElementById('privacy-notice');
+    const dismissButton = document.getElementById('dismiss-privacy');
+    const timerDisplay = document.getElementById('timer');
+    let timeLeft = 5;
+
+    // Function to close the notice
+    const closeNotice = () => {
+        privacyNotice.classList.add('hidden');
+        localStorage.setItem('privacy-notice-dismissed', 'true');
+    };
+
+    // Check if user has already dismissed the notice
+    const hasSeenNotice = localStorage.getItem('privacy-notice-dismissed');
+    
+    if (hasSeenNotice) {
+        privacyNotice.classList.add('hidden');
+    } else {
+        // Start countdown
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+            timerDisplay.classList.add('countdown-pulse');
+            
+            // Remove pulse animation after it completes
+            setTimeout(() => {
+                timerDisplay.classList.remove('countdown-pulse');
+            }, 1000);
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                closeNotice();
+            }
+        }, 1000);
+
+        // Allow manual dismissal
+        dismissButton.addEventListener('click', () => {
+            clearInterval(countdown);
+            closeNotice();
+        });
+    }
+});
 </script>
 </a>
 </div>
@@ -349,6 +393,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <section id="one">
     
+    <!-- Add this HTML where you want the notice to appear -->
+<div id="privacy-notice" class="privacy-notice">
+    <div class="privacy-content">
+        <h2>We reject surveillance capitalism 🌱</h2>
+        <p>This site uses absolutely ZERO cookies or tracking. We respect your privacy 
+           and believe in a web free from surveillance. Your data stays on your device - 
+           period.</p>
+        <div class="privacy-actions">
+            <div class="countdown">Closing in <span id="timer">3</span></div>
+            <button id="dismiss-privacy" class="dismiss-btn">Got it</button>
+        </div>
+    </div>
+</div>
+
         <div class="card-container cascade ">
             <div class="card cascade-item">
                 <div class="card-content cascade-item">
@@ -368,7 +426,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <img id="arrow" class="fade-in-slow" src="image(38).png"  alt="arrow">
 
             
-      
 
    
     
@@ -379,8 +436,8 @@ document.addEventListener('DOMContentLoaded', function() {
  
     <section id="two">
         <a href="treatments-info.html" class="vertical-treatments-link">
-            Learn More +
-        </a>
+            Learn More <span id="largeplus">+</span>
+        </a> 
         <p>
             </p>
           <!--
@@ -457,7 +514,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <section id="finisher">
      
-
+        <div id="finisher-slots" class="available-slots">
+            <div class="slots-container">
+                <h3 class="slots-title">Book Your Session</h3>
+                <button id="finisher-expand-button" class="expand-button">
+                    <span class="expand-text">View more times</span>
+                    <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div id="finisher-slot-list" class="slot-list collapsed">
+                    <!-- Slots will be populated here -->
+                </div>
+            </div>
+        </div>
 
         <a href="" id="return-to-top" class="btn-return-top"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>

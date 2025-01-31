@@ -7,7 +7,7 @@
 // - Mix both: "15-17, 18:30"
 const AVAILABLE_SLOTS = [
   "31.01 15-19",            // One specific time + range
-  "01.03 16-18"             // Range + specific time
+  "02.02 16-18"             // Range + specific time
 ];
 
 // ===== END OF CONFIGURATION =====
@@ -22,7 +22,9 @@ const reviewerName = document.getElementById("reviewer-name");
 const reviewText = document.getElementById("review-text");
 const starRatingContainer = document.getElementById("star-rating");
 const returnToTopButton = document.getElementById("return-to-top");
+let selectedSlot = null; // Add this at the top with your other variables
 let selectedRating = 0;
+
 
 
 // fade in anim. with observer
@@ -138,6 +140,38 @@ closeMenuButtonEl.addEventListener('click', () => {
   }, 500); // Adjust timeout if needed
 });
 
+function closeNavMenu() {
+  navMenuEl.classList.remove('active');
+  
+  setTimeout(() => {
+      navMenuEl.style.display = 'none';
+      const menuItems = navMenuEl.querySelectorAll('ul li');
+      menuItems.forEach(item => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateX(30px)';
+      });
+      
+      void navMenuEl.offsetHeight;
+      
+      menuItems.forEach(item => {
+          item.style.opacity = '';
+          item.style.transform = '';
+      });
+  }, 500);
+
+  showSocialButtons();
+}
+
+// Then use it in both places:
+closeMenuButtonEl.addEventListener('click', closeNavMenu);
+
+document.addEventListener('click', (event) => {
+  if (navMenuEl.style.display === 'block') {
+      if (!navMenuEl.contains(event.target) && !openMenuButtonEl.contains(event.target)) {
+          closeNavMenu();
+      }
+  }
+});
 
 
 
@@ -743,69 +777,121 @@ document.querySelectorAll('input, textarea').forEach((field) => {
   });
 });
 
-// Function to expand time range
+
+// ===== SLOT MANAGEMENT CLASS =====
+class SlotsContainer {
+    constructor(containerId, expandButtonId, slotListId) {
+        this.container = document.getElementById(containerId);
+        this.expandButton = document.getElementById(expandButtonId);
+        this.slotList = document.getElementById(slotListId);
+        this.setupExpand();
+    }
+
+    setupExpand() {
+        if (!this.expandButton || !this.container) return;
+        
+        this.expandButton.addEventListener('click', () => {
+            this.container.classList.toggle('expanded');
+            this.slotList.classList.toggle('collapsed');
+            
+            const expandText = this.expandButton.querySelector('.expand-text');
+            if (expandText) {
+                expandText.textContent = this.container.classList.contains('expanded') 
+                    ? 'Show less' 
+                    : 'View more times';
+            }
+        });
+    }
+
+    updateSlots(slots) {
+        if (!this.slotList) return;
+
+        this.slotList.innerHTML = '';
+
+        if (slots.length === 0) {
+            this.slotList.innerHTML = '<div class="no-slots-message">No available time slots found</div>';
+            if (this.expandButton) {
+                this.expandButton.style.display = 'none';
+            }
+            return;
+        }
+
+        slots.forEach((slot, index) => {
+            const slotElement = document.createElement('div');
+            slotElement.className = 'slot-item';
+            slotElement.style.setProperty('--index', index);
+            const relativeDate = getRelativeDateString(slot.date);
+            slotElement.innerHTML = `
+                <span class="slot-time">${slot.time}</span>
+                <span class="slot-date">${relativeDate}</span>
+            `;
+            slotElement.onclick = () => handleSlotSelect(slot, slotElement);
+            this.slotList.appendChild(slotElement);
+        });
+
+        if (this.expandButton) {
+            this.expandButton.style.display = slots.length <= 2 ? 'none' : 'flex';
+        }
+    }
+}
+
+// ===== TIME UTILITY FUNCTIONS =====
 function expandTimeRange(rangeStr) {
-  const [start, end] = rangeStr.split('-').map(t => t.trim());
-  const startHour = parseInt(start.split(':')[0]);
-  const endTime = end.includes(':') ? end : `${end}:00`;
-  const [endHour, endMinutes] = endTime.split(':').map(n => parseInt(n));
-  
-  const times = [];
-  for (let hour = startHour; hour <= endHour; hour++) {
-      if (hour === endHour && endMinutes === 0) {
-          times.push(`${hour}:00`);
-      } else if (hour < endHour) {
-          times.push(`${hour}:00`);
-      }
-  }
-  
-  // Add the end time if it's not on the hour
-  if (endMinutes > 0) {
-      times.push(endTime);
-  }
-  
-  return times;
+    const [start, end] = rangeStr.split('-').map(t => t.trim());
+    const startHour = parseInt(start.split(':')[0]);
+    const endTime = end.includes(':') ? end : `${end}:00`;
+    const [endHour, endMinutes] = endTime.split(':').map(n => parseInt(n));
+    
+    const times = [];
+    for (let hour = startHour; hour <= endHour; hour++) {
+        if (hour === endHour && endMinutes === 0) {
+            times.push(`${hour}:00`);
+        } else if (hour < endHour) {
+            times.push(`${hour}:00`);
+        }
+    }
+    
+    if (endMinutes > 0) {
+        times.push(endTime);
+    }
+    
+    return times;
 }
 
-// Function to format time properly
 function formatTime(timeStr) {
-  // Add ":00" if only hours are provided
-  if (!timeStr.includes(':')) {
-      timeStr = timeStr + ':00';
-  }
-  // Ensure two digits for hours
-  const [hours, minutes] = timeStr.split(':');
-  return `${hours.padStart(2, '0')}:${minutes}`;
+    timeStr = !timeStr.includes(':') ? timeStr + ':00' : timeStr;
+    const [hours, minutes] = timeStr.split(':');
+    return `${hours.padStart(2, '0')}:${minutes}`;
 }
 
-// Function to parse time string (handles both ranges and individual times)
 function parseTimeString(timeStr) {
-  if (timeStr.includes('-')) {
-      return expandTimeRange(timeStr);
-  }
-  return [formatTime(timeStr.trim())];
+    return timeStr.includes('-') ? 
+        expandTimeRange(timeStr) : 
+        [formatTime(timeStr.trim())];
 }
 
-// Function to parse slot string
 function parseSlotString(slotStr) {
-  const [dateStr, timesStr] = slotStr.split(' ');
-  const timeSegments = timesStr.split(',').map(t => t.trim());
-  
-  const times = timeSegments.flatMap(segment => parseTimeString(segment));
-  return {
-      date: dateStr,
-      times: [...new Set(times)].sort() // Remove duplicates and sort
-  };
+    const [dateStr, timesStr] = slotStr.split(' ');
+    const timeSegments = timesStr.split(',').map(t => t.trim());
+    
+    const times = timeSegments.flatMap(segment => parseTimeString(segment));
+    return {
+        date: dateStr,
+        times: [...new Set(times)].sort()
+    };
 }
 
-// Function to convert date string to Date object
+// ===== DATE UTILITY FUNCTIONS =====
 function parseDate(dateStr) {
-  const [day, month] = dateStr.split('.');
-  const year = new Date().getFullYear();
-  return new Date(year, parseInt(month) - 1, parseInt(day));
+    const [day, month] = dateStr.split('.');
+    const year = new Date().getFullYear();
+    return new Date(year, parseInt(month) - 1, parseInt(day));
 }
 
-// Function to get relative date string
+function formatDate(date) {
+    return `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}`;
+}
+
 function getRelativeDateString(date) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -818,100 +904,149 @@ function getRelativeDateString(date) {
   switch (diffDays) {
       case 0: return "Today";
       case 1: return "Tomorrow";
-      case 2: return "Day After Tomorrow";
       default:
-          return targetDate.toLocaleDateString('en-US', { 
+          return targetDate.toLocaleDateString('en-US', {
               weekday: 'long', 
               month: 'short', 
-              day: 'numeric' 
+              day: 'numeric'
           });
   }
 }
 
-// Function to check if a slot is in the future
+// ===== SLOT GENERATION =====
 function isSlotInFuture(dateObj, timeStr) {
-  const now = new Date();
-  const [hours, minutes] = timeStr.split(':').map(num => parseInt(num));
-  
-  const slotTime = new Date(dateObj);
-  slotTime.setHours(hours, minutes, 0, 0);
-  
-  return slotTime > now;
+    const now = new Date();
+    const [hours, minutes] = timeStr.split(':').map(num => parseInt(num));
+    
+    const slotTime = new Date(dateObj);
+    slotTime.setHours(hours, minutes, 0, 0);
+    
+    return slotTime > now;
 }
 
-// Function to generate all valid future slots
 function generateSlots() {
-  const slots = [];
-  AVAILABLE_SLOTS.forEach(slotStr => {
-      const { date, times } = parseSlotString(slotStr);
-      const dateObj = parseDate(date);
-      
-      times.forEach(time => {
-          // Only add the slot if it's in the future
-          if (isSlotInFuture(dateObj, time)) {
-              slots.push({
-                  time: time,
-                  date: dateObj
-              });
-          }
-      });
-  });
-  return slots;
+    return AVAILABLE_SLOTS.flatMap(slotStr => {
+        const { date, times } = parseSlotString(slotStr);
+        const dateObj = parseDate(date);
+        
+        return times
+            .filter(time => isSlotInFuture(dateObj, time))
+            .map(time => ({ time, date: dateObj }));
+    });
+}
+// ===== BOOKING INTERFACE =====
+function handleSlotSelect(slot, element) {
+  const previousSelected = document.querySelector('.slot-item.selected');
+  if (previousSelected) {
+      previousSelected.classList.remove('selected');
+  }
+  
+  element.classList.add('selected');
+  showConfirmationPopup(slot);
 }
 
-// Function to update available slots
-function updateAvailableSlots() {
-  const slots = generateSlots();
-  const slotList = document.getElementById('slot-list');
-  const container = document.querySelector('.slots-container');
-  slotList.innerHTML = '';
-
-  // Only proceed if there are future slots available
-  if (slots.length === 0) {
-      slotList.innerHTML = '<div class="no-slots-message">No available time slots found</div>';
-      document.getElementById('expand-button').style.display = 'none';
-      return;
+function showConfirmationPopup(slot) {
+  const existingPopup = document.querySelector('.slot-popup');
+  if (existingPopup) {
+      existingPopup.remove();
   }
 
-  slots.forEach((slot, index) => {
-      const slotElement = document.createElement('div');
-      slotElement.className = 'slot-item';
-      slotElement.style.setProperty('--index', index);
-      const relativeDate = getRelativeDateString(slot.date);
-      slotElement.innerHTML = `
-          <span class="slot-time">${slot.time}</span>
-          <span class="slot-date">${relativeDate}</span>
-      `;
-      slotElement.onclick = () => {
-          console.log(`Selected slot: ${slot.time} on ${slot.date.toDateString()}`);
-      };
-      slotList.appendChild(slotElement);
-  });
-
-  // Hide expand button if there are 2 or fewer slots
-  const expandButton = document.getElementById('expand-button');
-  expandButton.style.display = slots.length <= 2 ? 'none' : 'flex';
+  const popup = document.createElement('div');
+  popup.className = 'slot-popup';
+  popup.innerHTML = `
+      <div class="popup-content">
+          <div class="popup-header">
+              <h3>Claim this slot?</h3>
+              <button class="close-btn">&times;</button>
+          </div>
+          <p>${formatDate(slot.date)} at ${slot.time}</p>
+          <button class="confirm-btn">Continue</button>
+      </div>
+  `;
+  
+  document.body.appendChild(popup);
+  setupPopupListeners(popup, slot, false); // Add false parameter for confirmation popup
 }
 
-// Initialize slots and expand functionality
-document.addEventListener('DOMContentLoaded', () => {
-  updateAvailableSlots();
+function setupPopupListeners(popup, slot, isSocialPopup = false) {
+  // Close button
+  const closeBtn = popup.querySelector('.close-btn');
+  if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+          popup.remove();
+      });
+  }
+  
+  // Only setup confirm button for confirmation popup
+  if (!isSocialPopup) {
+      const confirmBtn = popup.querySelector('.confirm-btn');
+      if (confirmBtn) {
+          confirmBtn.addEventListener('click', () => {
+              popup.remove();
+              showSocialOptions(slot);
+          });
+      }
+  }
 
-  const expandButton = document.getElementById('expand-button');
-  const container = document.querySelector('.slots-container');
-  const slotList = document.getElementById('slot-list');
-
-  expandButton.addEventListener('click', () => {
-      container.classList.toggle('expanded');
-      slotList.classList.toggle('collapsed');
-      
-      if (container.classList.contains('expanded')) {
-          expandButton.querySelector('.expand-text').textContent = 'Show less';
-      } else {
-          expandButton.querySelector('.expand-text').textContent = 'View more times';
+  // Outside click
+  popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+          popup.remove();
       }
   });
+}
 
-  // Check for updates every minute
-  setInterval(updateAvailableSlots, 60000);
+function showSocialOptions(slot) {
+  const message = encodeURIComponent(
+      `Hi, I'd like to book a massage for ${formatDate(slot.date)} at ${slot.time}`
+  );
+  
+  const popup = document.createElement('div');
+  popup.className = 'slot-popup';
+  popup.innerHTML = `
+      <div class="popup-content">
+          <div class="popup-header">
+              <h3>Choose how to contact us</h3>
+              <button class="close-btn">&times;</button>
+          </div>
+          <div class="dropdown-content show">
+              <a id="TEL" href="https://t.me/thetemplewellness?text=${message}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+                  </svg>
+                  <span>Telegram</span>
+              </a>
+              <a id="WA" href="https://wa.me/31657363244?text=${message}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47"/>
+                  </svg>
+                  <span>WhatsApp</span>
+              </a>
+              <a id="SIG" href="https://signal.me/#eu/ZFGRul53UiJoIFY3NDs6EDLu6cKQJEKRqzVElvHxPsxqtsZkW1JIVpKPCCMVuc2x?text=${message}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                      <path d="M8 1.5a6.5 6.5 0 0 0-6.498 6.502 6.5 6.5 0 0 0 .998 3.455l-.625 2.668L4.54 13.5a6.502 6.502 0 0 0 6.93-11A6.5 6.5 0 0 0 8 1.5m3.915 12.08-.384-.64a7.2 7.2 0 0 1-2.007.831l.18.728a8 8 0 0 0 2.211-.919m3.336-5.58-.728-.18a7.3 7.3 0 0 1-.832 2.012l.643.387a8 8 0 0 0 .917-2.219"/>
+                  </svg>
+                  <span>Signal</span>
+              </a>
+          </div>
+      </div>
+  `;
+  
+  document.body.appendChild(popup);
+  setupPopupListeners(popup, null, true); // Add true parameter for social popup
+}
+
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', () => {
+  const navSlots = new SlotsContainer('nav-slots', 'nav-expand-button', 'nav-slot-list');
+  const finisherSlots = new SlotsContainer('finisher-slots', 'finisher-expand-button', 'finisher-slot-list');
+
+  function updateAllSlots() {
+      const slots = generateSlots();
+      navSlots.updateSlots(slots);
+      finisherSlots.updateSlots(slots);
+  }
+
+  updateAllSlots();
+  setInterval(updateAllSlots, 60000);
 });
