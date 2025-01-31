@@ -3112,11 +3112,12 @@ border-bottom: cyan;
 /* No Cookie info */
 .privacy-notice {
     position: fixed;
-    bottom: 1.5rem;
+    bottom: -1rem;
     left: 50%;
     transform: translateX(-50%) translateY(0);
     max-width: min(85%, 24rem);
-    background: rgba(15, 15, 15, 0.85);
+    min-width: 80%;
+    background: rgba(0, 0, 0, 0.553);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 2.5rem;
@@ -3214,4 +3215,5 @@ border-bottom: cyan;
         padding: 0.35rem 0.9rem;
         font-size: 0.85rem;
     }
-}
+} 
+
