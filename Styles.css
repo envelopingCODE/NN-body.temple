@@ -116,9 +116,10 @@ section {
 }
 
 #logo {
+    margin-top: -10px;
 
-    scale: 2.6;
-    margin-bottom: 1%;
+    scale: 2.1;
+    margin-bottom: 18px;
 }
 
 /* Styles for the hamburger menu */
@@ -355,10 +356,10 @@ font-size: 0.8em;
        
 #tagline {
   
-    font-family: Architex,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
      font-weight: 200;
      font-size: 0.6em;
-     letter-spacing: 4px;
+     letter-spacing: 3px;
      color: rgb(255, 255, 255);
 }
 
