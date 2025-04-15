@@ -6,9 +6,9 @@
 // - Individual times: "15, 16:30, 17"
 // - Mix both: "15-17, 18:30"
 const AVAILABLE_SLOTS = [
-  "19.02 14-19",            // One specific time + range
-  "20.02 14-18",
-  "20.02 14-18"             // Range + specific time
+  "16.04 15-19",            // One specific time + range
+  "18.04 15-19",
+  "0.02 14-18"             // Range + specific time
 ];
 
 // ===== END OF CONFIGURATION =====
@@ -386,7 +386,13 @@ document.querySelectorAll('.star').forEach(star => {
 */
 
 
+// Want to book button 
 
+document.getElementById('booking-button').addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  window.location.href = "index.html#finisher";
+  });
 
 // Guide Initialization  #1
 
@@ -776,6 +782,103 @@ document.querySelectorAll('input, textarea').forEach((field) => {
           event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 300); // Delay to ensure keyboard is fully open
   });
+});
+
+
+// ---- TREATMENTS SECTION -----
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Accordion Functionality
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  const tagButtons = document.querySelectorAll('.tag-btn');
+  const noResults = document.querySelector('.no-results');
+  
+  // Add animation delay based on item index
+  accordionItems.forEach((item, index) => {
+      item.style.setProperty('--item-index', index);
+  });
+  
+  // Accordion toggle
+  accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+          const item = header.parentElement;
+          
+          // Toggle current accordion
+          item.classList.toggle('active');
+          
+          // Auto-close others if we're opening this one
+          if (item.classList.contains('active')) {
+              accordionItems.forEach(otherItem => {
+                  if (otherItem !== item && otherItem.classList.contains('active')) {
+                      otherItem.classList.remove('active');
+                  }
+              });
+          }
+      });
+  });
+  
+  // Tag filtering function
+  function filterByTag(tagName) {
+      let visibleCount = 0;
+      
+      accordionItems.forEach(item => {
+          // "All" tag shows everything
+          if (tagName === 'all') {
+              item.classList.remove('hidden');
+              visibleCount++;
+          } else {
+              // Check if item has the selected tag
+              const itemTags = item.getAttribute('data-tags').split(' ');
+              if (itemTags.includes(tagName)) {
+                  item.classList.remove('hidden');
+                  visibleCount++;
+              } else {
+                  item.classList.add('hidden');
+                  // Close the accordion if it's hidden
+                  if (item.classList.contains('active')) {
+                      item.classList.remove('active');
+                  }
+              }
+          }
+      });
+      
+      // Show "No results" message if needed
+      if (visibleCount === 0) {
+          noResults.classList.add('visible');
+      } else {
+          noResults.classList.remove('visible');
+      }
+  }
+  
+  // Tag button click event
+  tagButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          // Update active button
+          tagButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // Filter items
+          const tagName = button.getAttribute('data-tag');
+          filterByTag(tagName);
+      });
+  });
+  
+  // Booking button functionality
+  const bookingButton = document.getElementById('booking-button');
+  if (bookingButton) {
+      bookingButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Show the dropdown menu or open a booking dialog
+          const dropdownBtn = document.querySelector('.dropbtn');
+          if (dropdownBtn) {
+              dropdownBtn.click();
+          }
+          // You can also navigate directly to your booking page if preferred
+          // window.location.href = "booking.html";
+      });
+  }
 });
 
 

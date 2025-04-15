@@ -408,13 +408,27 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="card-container cascade ">
             <div class="card cascade-item">
                 <div class="card-content cascade-item">
-                    <h2 class="card-title cascade-item">Your body is your temple,<br><span id="tagline"> Let's nourish it</span></h2>
+                    <h2 class="card-title cascade-item">Your body is your temple<br><span id="tagline">— Let's nourish it</span></h2>
                     <p class="card-text cascade-item"> 
                  
-                        
-          <button> I want to book a massage</button>
-
-           <button>I want to explore treatments</button>
+ <!-- HTML Structure for the buttons -->
+<div class="pathway-buttons-container">
+    <a href="#" class="pathway-button booking-button" id="booking-button">
+      <div class="button-content">
+        <span class="button-icon">📅</span>
+        <span class="button-text">I want to book a massage</span>
+        <div class="button-shine"></div>
+      </div>
+    </a>
+    
+    <a href="treatments-info.html" class="pathway-button explore-button" id="explore-button">
+      <div class="button-content">
+        <span class="button-icon">🧘</span>
+        <span class="button-text">I want to explore treatments</span>
+        <div class="button-shine"></div>
+      </div>
+    </a>
+  </div>
            
  <div class="cascade-item"><div class="handwritten">Naturally Nate</div></div>
                         </p>
@@ -436,61 +450,266 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
     
 
+            <section id="two">
+                <a href="treatments-info.html" class="vertical-treatments-link">
+                    Learn More <span id="largeplus">+</span>
+                </a>
+             
+                
+                <!-- Treatments Container with Tag Filtering -->
+                <div class="treatments-container">
+                
 
- 
-    <section id="two">
-        <a href="treatments-info.html" class="vertical-treatments-link">
-            Learn More <span id="largeplus">+</span>
-        </a> 
-        <p>
-            </p>
-          <!--
-<div class="tagline">
-     <h1>Unfortunately, nice packaging is often used to hide subpar ingredients</h1>
+                <div class="intro-banner">
+                    <p class="discount-text">Introductory offer — <span class="discount-highlight">10% Off All Services</span> for first-time clients</p>
+                </div>
+                
+            
+                    <!-- Tag Filtering System -->
+                    <div class="tag-filter">
+                        <button class="tag-btn active" data-tag="all">All</button>
+                        <button class="tag-btn" data-tag="full-body">Full Body</button>
+                        <button class="tag-btn" data-tag="targeted">Targeted</button>
+                        <button class="tag-btn" data-tag="relaxation">Relaxation</button>
+                        <button class="tag-btn" data-tag="deep-tissue">Deep Tissue</button>
+                        <button class="tag-btn" data-tag="sports">Sports</button>
+                        <button class="tag-btn" data-tag="aromatherapy">Aromatherapy</button>
+                    </div>
+            
+                    <!-- Accordion Style Treatments -->
+                    <div class="treatment-accordion">
+                        <!-- Classic Partial Body Massage -->
+                        <div class="accordion-item" data-tags="targeted relaxation">
+                            <div class="accordion-header">
+                                <div class="header-content">
+                                    <span class="header-emoji">🦵🏼</span>
+                                    <div class="header-text">
+                                        <h3 class="header-title">Classic Partial Body Massage</h3>
+                                        <div class="treatment-tags">
+                                            <span class="tag">Targeted</span>
+                                            <span class="tag">Relaxation</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="treatment-description">
+                                    Indulge in a personalized partial body massage, focusing on your choice of the back, legs, or face.
+                                </p>
+                                <div class="treatment-pricing">
+                                    <div class="pricing-row">
+                                        <span class="duration">25 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€49</span>
+                                            <span class="discount-price">€44</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Classic Full Body Rejuvenation -->
+                        <div class="accordion-item" data-tags="full-body relaxation">
+                            <div class="accordion-header">
+                                <div class="header-content">
+                                    <span class="header-emoji">🤲🏼</span>
+                                    <div class="header-text">
+                                        <h3 class="header-title">Classic Full Body Rejuvenation</h3>
+                                        <div class="treatment-tags">
+                                            <span class="tag">Full Body</span>
+                                            <span class="tag">Relaxation</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="treatment-description">
+                                    Perfect for massage novices, experience a comprehensive massage targeting your back, arms, and legs with time-honored techniques.
+                                </p>
+                                <div class="treatment-pricing">
+                                    <div class="pricing-row">
+                                        <span class="duration">50 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€89</span>
+                                            <span class="discount-price">€80</span>
+                                        </div>
+                                    </div>
+                                    <div class="pricing-row">
+                                        <span class="duration">80 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€119</span>
+                                            <span class="discount-price">€107</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Pure Relaxation -->
+                        <div class="accordion-item" data-tags="full-body relaxation">
+                            <div class="accordion-header">
+                                <div class="header-content">
+                                    <span class="header-emoji">🌱</span>
+                                    <div class="header-text">
+                                        <h3 class="header-title">Pure Relaxation</h3>
+                                        <div class="treatment-tags">
+                                            <span class="tag">Full Body</span>
+                                            <span class="tag">Relaxation</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="treatment-description">
+                                    Combine the soothing benefits of a classic back and legs massage for total relaxation and a sensation of weightlessness.
+                                </p>
+                                <div class="treatment-pricing">
+                                    <div class="pricing-row">
+                                        <span class="duration">50 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€89</span>
+                                            <span class="discount-price">€80</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Deep Tissue Massage -->
+                        <div class="accordion-item" data-tags="deep-tissue targeted">
+                            <div class="accordion-header">
+                                <div class="header-content">
+                                    <span class="header-emoji">💆🏼‍♂️</span>
+                                    <div class="header-text">
+                                        <h3 class="header-title">Deep Tissue Massage</h3>
+                                        <div class="treatment-tags">
+                                            <span class="tag">Deep Tissue</span>
+                                            <span class="tag">Targeted</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="treatment-description">
+                                    Unwind with a deeply penetrating massage technique designed to release deeply stored tension and restore harmony to muscles, tissues, and joints.
+                                </p>
+                                <div class="treatment-pricing">
+                                    <div class="pricing-row">
+                                        <span class="duration">25 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€60</span>
+                                            <span class="discount-price">€54</span>
+                                        </div>
+                                    </div>
+                                    <div class="pricing-row">
+                                        <span class="duration">50 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€99</span>
+                                            <span class="discount-price">€89</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    </div>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-content">
-                    <h2 class="card-title">The Journey ! </h2>
-                    <p class="card-text"> 
-                       Naturally Nate’s body.temple massages 💆🏼‍♂️ 
-
-            *Introductory LGBT offer  -10% discount 
-            
-            Classic partial body massage 🦵🏼
-            Indulge in a personalized partial body massage, focusing on your choice of the back, legs, or face.
-            
-            25 min. - €49 | Your rate: €44 *
-            
-            Classic Full Body Rejuvenation 🤲🏼
-            Perfect for massage novices, experience a comprehensive massage targeting your back, arms, and legs with time-honored techniques.
-            
-            50 min. - 89 € | Your rate: €80 *  
-            80 min.   119 € | Your rate: €107 *
-            
-            Pure relaxation 🌱 
-            Combine the soothing benefits of a classic back and legs massage for total relaxation and a sensation of weightlessness.
-            
-            50 min. - €89 | Your rate: €80 *
-            
-            Deep tissue massage 💆🏼‍♂️ 
-            Unwind with a deeply penetrating massage technique designed to release deeply stored tension and restore harmony to muscles, tissues, and joints.
-            
-            25 min. - €60 | Your rate: €54 *
-            50 min. - €99 | Your rate: €89 *
-            
-            Aromatic Essence Massage 🪔
-            Drift into tranquility with a delicate massage incorporating your chosen natural essential oil.
-            
-            25 min. - €49 | Your rate: €44 *
-            50 min. - €89 | Your rate: €80 *
-            80 min. - €119 | Your rate: €107 * </p>
+                        <!-- Sports Massage - To be added to your accordion items -->
+<div class="accordion-item" data-tags="deep-tissue sports targeted">
+    <div class="accordion-header">
+        <div class="header-content">
+            <span class="header-emoji">🏋️‍♂️</span>
+            <div class="header-text">
+                <h3 class="header-title">Sports Massage</h3>
+                <div class="treatment-tags">
+                    <span class="tag">Deep Tissue</span>
+                    <span class="tag">Sports</span>
+                    <span class="tag">Recovery</span>
                 </div>
             </div>
         </div>
-      --> 
-    </section>
+        <span class="expand-icon">+</span>
+    </div>
+    <div class="accordion-content">
+        <p class="treatment-description">
+            Designed for athletes and active individuals, this specialized massage targets muscle groups affected by athletic activities. Improves performance and accelerates recovery time.
+        </p>
+        <div class="treatment-pricing">
+            <div class="pricing-row">
+                <span class="duration">25 min</span>
+                <div class="price-container">
+                    <span class="regular-price">€65</span>
+                    <span class="discount-price">€58</span>
+                </div>
+            </div>
+            <div class="pricing-row">
+                <span class="duration">50 min</span>
+                <div class="price-container">
+                    <span class="regular-price">€105</span>
+                    <span class="discount-price">€94</span>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+</div>
+            
+                        <!-- Aromatic Essence Massage -->
+                        <div class="accordion-item" data-tags="aromatherapy full-body relaxation">
+                            <div class="accordion-header">
+                                <div class="header-content">
+                                    <span class="header-emoji">🪔</span>
+                                    <div class="header-text">
+                                        <h3 class="header-title">Aromatic Essence Massage</h3>
+                                        <div class="treatment-tags">
+                                            <span class="tag">Aromatherapy</span>
+                                            <span class="tag">Full Body</span>
+                                            <span class="tag">Relaxation</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="treatment-description">
+                                    Drift into tranquility with a delicate massage incorporating your chosen natural essential oil.
+                                </p>
+                                <div class="treatment-pricing">
+                                    <div class="pricing-row">
+                                        <span class="duration">25 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€49</span>
+                                            <span class="discount-price">€44</span>
+                                        </div>
+                                    </div>
+                                    <div class="pricing-row">
+                                        <span class="duration">50 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€89</span>
+                                            <span class="discount-price">€80</span>
+                                        </div>
+                                    </div>
+                                    <div class="pricing-row">
+                                        <span class="duration">80 min</span>
+                                        <div class="price-container">
+                                            <span class="regular-price">€119</span>
+                                            <span class="discount-price">€107</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="no-results">
+                        No treatments match the selected filter. Please try another option.
+                    </div>
+            
+                    <p class="footer-note">All massages include heated organic body oils</p>
+                </div>
+            </section>
 
 
     <section id="reviews-section" class="cascade">

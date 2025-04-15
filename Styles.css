@@ -49,6 +49,98 @@ body, html {
 }
 
 
+/* Pathway buttons */
+
+
+.pathway-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+  margin: 24px auto;
+}
+
+.pathway-button {
+  position: relative;
+  overflow: hidden;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  border: 1px solid rgba(0, 255, 200, 0.2);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pathway-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 255, 200, 0.5);
+}
+
+.booking-button {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 135, 105, 0.3));
+}
+
+.explore-button {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(33, 150, 243, 0.3));
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+      
+
+}
+
+.button-icon {
+  font-size: 24px;
+}
+
+.button-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  
+
+}
+
+.button-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 200, 0.3),
+    transparent
+  );
+  z-index: 0;
+  transform: skewX(-15deg);
+  transition: left 0.8s ease;
+}
+
+.pathway-button:hover .button-shine {
+  left: 200%;
+  transition: left 1s ease;
+}
+
+@media (max-width: 768px) {
+  .pathway-buttons-container {
+    padding: 0 16px;
+  }
+}
+
 
 /* Chapter 3: The Choreography */
 @keyframes signatureAppear {
@@ -385,7 +477,7 @@ margin-top: 4px ;
    }
 
 #two {
-    background-image: url("photos/TreatmentsX2.jpg");
+    background-image: url("pexels-sergey-torbik-42706484-7365398.webp");
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -882,7 +974,7 @@ header {
     justify-content: space-around; }
 
 .header-title { font-size: 30px; 
-    font-family: YourHandWrittenFont, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold; 
     margin-bottom: 8px; 
     color: rgba(33, 246, 236, 0.642); 
@@ -2297,6 +2389,271 @@ color: blue;
 }
 
 
+/* New treatment */
+
+
+    /* Container Styles */
+    .treatments-container {
+        height: 100%;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding: 20px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
+        
+    }
+
+    .treatments-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome, Safari, Opera */
+    }
+
+    /* Intro Banner */
+    .intro-banner {
+        background: rgba(0, 255, 238, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 5px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border-left: 5px solid rgba(0, 255, 200, 0.241);
+        text-align: center;
+    }
+
+    .discount-text {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: rgb(0, 255, 200);
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Tag Filter */
+    .tag-filter {
+        display: flex;
+        flex-wrap:wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .tag-filter::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tag-btn {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 255, 200, 0.1);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .tag-btn.active {
+        background: cadetblue;
+        border-color: rgba(0, 255, 200, 0.5);
+        color: rgb(0, 255, 200);
+    }
+
+    /* Accordion Styles */
+    .treatment-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .accordion-item {
+        background: rgb(0, 0, 0);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 255, 200, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .accordion-item.active {
+        border-color: rgba(0, 255, 200, 0.886);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .accordion-item.hidden {
+        display: none;
+    }
+
+    .accordion-header {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.479), rgba(3, 3, 3, 0.143));
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .header-emoji {
+        font-size: 1.5rem;
+    }
+
+    .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .treatment-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 5px;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        background: cadetblue;
+        padding: 2px 8px;
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .expand-icon {
+        font-size: 1.5rem;
+        color: rgb(0, 255, 200);
+        transition: transform 0.3s ease;
+    }
+
+    .accordion-item.active .expand-icon {
+        transform: rotate(45deg);
+    }
+
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .accordion-item.active .accordion-content {
+        max-height: 500px; /* Set a large enough value to accommodate all content */
+        padding: 15px;
+    }
+    
+
+    /* Treatment Content */
+    .treatment-description {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .treatment-pricing {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pricing-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background: rgba(4, 103, 103, 0.015);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 255, 200, 0.1);
+    }
+
+    .duration {
+        font-weight: bold;
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    .price-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .regular-price {
+        text-decoration: line-through;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+    }
+
+    .discount-price {
+        font-weight: bold;
+        color: rgb(0, 255, 200);
+        font-size: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer-note {
+        margin-top: 15px;
+        font-style: italic;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .accordion-item {
+        animation: fadeIn 0.5s ease forwards;
+        animation-delay: calc(var(--item-index, 0) * 0.1s);
+        opacity: 0;
+    }
+
+    /* No Results Message */
+    .no-results {
+        text-align: center;
+        padding: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        display: none;
+    }
+
+    .no-results.visible {
+        display: block;
+        animation: fadeIn 0.5s ease forwards;
+    }
+
+
+
 
 .treatment-details-link {
     display: flex;
@@ -2338,14 +2695,7 @@ color: blue;
     background: rgba(0, 0, 0, 0.4);
 }
 
-.accordion-header {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 255, 200, 0.1);
-    cursor: pointer;
-}
+
 
 .accordion-content {
     max-height: 0;
@@ -3217,4 +3567,70 @@ border-bottom: cyan;
         font-size: 0.85rem;
     }
 } 
+
+
+
+
+
+/* Refined Intro Banner for High-End Spa */
+
+/* Update the intro banner to be more subtle and elegant */
+.intro-banner {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 18px 22px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border-left: none; /* Remove the bright border */
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+/* Add subtle border and depth */
+.intro-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+/* Add subtle accent line */
+.intro-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: rgba(0, 255, 200, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+}
+
+/* Refined discount text styling */
+.discount-text {
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-shadow: none;
+    position: relative;
+    display: inline-block;
+}
+
+/* Make the "10% Off" part stand out subtly */
+.discount-highlight {
+    font-weight: 500;
+    color: rgb(0, 255, 200);
+    opacity: 0.9;
+    position: relative;
+}
 
