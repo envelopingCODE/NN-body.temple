@@ -432,8 +432,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
  <!-- HTML Structure for the buttons -->
-<div class="pathway-buttons-container">
-    <a href="index.html#finisher" class="pathway-button booking-button" id="booking-button">
+ <div class="pathway-buttons-container">
+    <a href="index.html#finisher" class="pathway-button booking-button" id="booking-button" 
+       onclick="window.location.href='index.html#finisher'; window.location.reload(); return false;">
       <div class="button-content">
         <span class="button-icon">📲</span>
         <div class="button-text"> Book your massage</div>
@@ -441,14 +442,14 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </a>
     
-    <a href="index.html#two" class="pathway-button explore-button" id="explore-button">
-      <div class="button-content">
-        <span class="button-icon">💆🏼‍♂️</span>
-        <span class="button-text">Explore our treatments</span>
-        <div class="button-shine"></div>
-      </div>
-    </a>
+    <a href="index.html#two" class="pathway-button explore-button" id="explore-button" 
+   onclick="window.location.href='index.html#two'; window.location.reload(); return false;">
+  <div class="button-content">
+    <span class="button-icon">💆🏼‍♂️</span>
+    <span class="button-text">Explore our treatments</span>
+    <div class="button-shine"></div>
   </div>
+</a>
            
  <div class="cascade-item"><div class="handwritten">Naturally Nate</div></div>
                         </p>
