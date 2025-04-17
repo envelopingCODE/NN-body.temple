@@ -1136,6 +1136,27 @@ function showSocialOptions(slot) {
   setupPopupListeners(popup, null, true); // Add true parameter for social popup
 }
 
+
+// Scrolling
+
+// Check if we have a stored scroll target
+const scrollTarget = localStorage.getItem('scrollTarget');
+if (scrollTarget) {
+  // Clear it immediately to prevent future unwanted scrolls
+  localStorage.removeItem('scrollTarget');
+  
+  // Wait for everything to load and render
+  setTimeout(function() {
+    const targetElement = document.getElementById(scrollTarget);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }, 800);
+}
+
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
   const navSlots = new SlotsContainer('nav-slots', 'nav-expand-button', 'nav-slot-list');
