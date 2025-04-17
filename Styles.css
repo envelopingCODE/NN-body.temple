@@ -1391,7 +1391,7 @@ color: blue;
   /* Add more nth-child rules as needed */
   
 
-  #arrow {
+  .arrow {
     width: 40px; /* Fixed width */
     height: auto;
     position: reltive;
@@ -1401,6 +1401,19 @@ color: blue;
     animation: bounce 2.4s infinite;
 
 }
+
+
+.arrow-small {
+    width: 20px; /* Fixed width */
+    height: auto;
+    position: reltive;
+    display: block;
+    margin: 1rem auto;
+    transform: rotate(90deg);
+    animation: bounce 7s infinite;
+
+}
+
 
 /* Bounce animation for the arrow */
 @keyframes bounce {
