@@ -973,9 +973,7 @@ button.arrow-down {
 
     transition: 0.6s;
     -webkit-filter: drop-shadow(8px 8px 10px black); filter: drop-shadow(8px 8px 10px black);
-        padding-top: 240px;
-
-
+        padding-top: 30px;
 
 
 }
@@ -1396,10 +1394,9 @@ color: blue;
   #arrow {
     width: 40px; /* Fixed width */
     height: auto;
-    position: relative;
+    position: reltive;
     display: block;
     margin: 1rem auto;
-    margin-top: -8%;
     transform: rotate(90deg);
     animation: bounce 2.4s infinite;
 
