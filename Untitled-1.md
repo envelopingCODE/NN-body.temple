@@ -1,0 +1,2 @@
+                        Welcome to Naturally Nate's body temple massage studio.
+                        These treatments are made just for you. 💚 Our organic body oils are not only skin-safe, but actively nourish your skin!  Release your deep muscle tensions now.
