@@ -388,11 +388,7 @@ document.querySelectorAll('.star').forEach(star => {
 
 // Want to book button 
 
-document.getElementById('booking-button').addEventListener('click', function(e) {
-  e.preventDefault();
-  
-  window.location.href = "index.html#finisher";
-  });
+
 
 // Guide Initialization  #1
 
