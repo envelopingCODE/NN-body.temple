@@ -60,10 +60,10 @@ body, html {
 #graphic-container{
 display: flex;
 flex-direction:row;
-gap: 40px;
+gap: 20px;
 margin-left: -20px;
-justify-content: space-around;
-max-width:260px
+justify-content: space-evenly;
+max-width:330px
 }
 
 .unit-container {
@@ -77,13 +77,15 @@ max-width:260px
 
 .graphic {
     max-width:100%;
-    scale: 1.4;
+    scale: 1;
+    -webkit-filter: drop-shadow(8px 8px 10px black );
+    filter:drop-shadow(8px 8px 10px black);
 
 }
 
+/*
 #graphic-edits {
-    scale: 1.3;
-}
+    scale: 1.3; } */
 
 .step-numbers {
     margin-top: 30px;
