@@ -176,6 +176,9 @@ document.addEventListener('click', (event) => {
 
 
 
+// Expansion of accordian treatment cards //
+
+
 
 
   // **Event Delegation for Navigation Links**
@@ -1156,6 +1159,13 @@ if (scrollTarget) {
     }
   }, 800);
 }
+
+
+
+
+
+
+
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
