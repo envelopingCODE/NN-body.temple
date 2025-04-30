@@ -1359,14 +1359,19 @@ color: blue;
   /* Add more nth-child rules as needed */
   
 
+  .arrow-container {
+    display: flex;
+    flex-direction: row;
+  }
+
   .arrow {
     width: 40px; /* Fixed width */
     height: auto;
-    position: reltive;
-    display: block;
+    position: relative;
     margin: 1rem auto;
     transform: rotate(90deg);
     animation: bounce 2.4s infinite;
+    margin-top: -25px;
 
 }
 
@@ -1381,6 +1386,8 @@ color: blue;
     animation: bounce 7s infinite;
 
 }
+
+
 
 .arrow-treatments {
     width: 25px; /* Fixed width */
