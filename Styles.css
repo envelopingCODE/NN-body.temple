@@ -3755,14 +3755,7 @@ border-bottom: cyan;
 /* ===== ENHANCED SECTION NAVIGATION CSS =====
    Add this to your Styles.css file */
 
-/* Enable smooth scrolling and snap behavior */
-html {
-    scroll-behavior: smooth;
-    height: 100%;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll; /* Ensure scroll behavior works consistently */
-  }
-  
+
 
   /* Links to sections */
   .section-link, 
