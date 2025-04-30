@@ -2755,7 +2755,7 @@ color: blue;
 .vertical-treatments-link {
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 70%;
     transform: translateY(-50%);
     writing-mode: vertical-lr;
     transform-origin: left center;
