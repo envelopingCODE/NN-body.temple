@@ -134,7 +134,7 @@ max-width:500px
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  min-width:260px;
+  min-width:300px;
 }
 
 .pathway-button:hover {
@@ -504,7 +504,7 @@ font-size: 0.8em;
     
        }
 
-    #one h1{
+       .swipe-down {
         margin: auto;
         display: block;
         font-size: 1.7em;
@@ -1370,6 +1370,17 @@ color: blue;
 
 .arrow-small {
     width: 20px; /* Fixed width */
+    height: auto;
+    position: reltive;
+    display: block;
+    margin: 1rem auto;
+    transform: rotate(90deg);
+    animation: bounce 7s infinite;
+
+}
+
+.arrow-treatments {
+    width: 25px; /* Fixed width */
     height: auto;
     position: reltive;
     display: block;
@@ -3706,7 +3717,7 @@ border-bottom: cyan;
     -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
     position: sticky;
-    top: 0px; /* Adjusted to account for header */
+    top: -20px; /* Adjusted to account for header */
     z-index: 10;
 }
 
