@@ -3706,7 +3706,7 @@ border-bottom: cyan;
     -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
     position: sticky;
-    top: 80px; /* Adjusted to account for header */
+    top: 0px; /* Adjusted to account for header */
     z-index: 10;
 }
 
