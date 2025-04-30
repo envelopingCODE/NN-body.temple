@@ -176,6 +176,9 @@ document.addEventListener('click', (event) => {
 
 
 
+
+
+
 // Expansion of accordian treatment cards //
 
 
@@ -1180,4 +1183,310 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateAllSlots();
   setInterval(updateAllSlots, 60000);
+});
+
+
+// ===== SECTION NAVIGATION FIX =====
+// Add this to the end of your existing Js.js file
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ===== 1. CORE SECTION NAVIGATION =====
+  /**
+   * Handles basic section links within the same page
+   * Ensures smooth scrolling between sections with proper timing
+   */
+  function initSectionNavigation() {
+    // Select all links that point to sections (both internal hashtags and index.html#section format)
+    const sectionLinks = document.querySelectorAll('a[href^="index.html#"], a[href^="#"]');
+    
+    // Process each section link
+    sectionLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Prevent default anchor jump behavior which can be abrupt
+        e.preventDefault(); 
+        
+        // Extract the target section ID from the href
+        let targetId = this.getAttribute('href').split('#')[1];
+        
+        // Handle index.html#section format when already on index page
+        if (this.getAttribute('href').startsWith('index.html#') && 
+           window.location.pathname.includes('index')) {
+          targetId = this.getAttribute('href').split('#')[1];
+        }
+        
+        // Only proceed if we've successfully extracted a target ID
+        if (targetId) {
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            // First, update the URL hash for proper browser history
+            history.pushState(null, null, `#${targetId}`);
+            
+            // Then scroll to the section with smooth behavior
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Second scroll with delay to ensure proper alignment
+            // This accounts for any dynamic content that might change heights
+            setTimeout(() => {
+              targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 600);
+          }
+        }
+      });
+    });
+  }
+
+  // ===== 2. MENU NAVIGATION FIX =====
+  /**
+   * Specifically handles navigation from the mobile menu 
+   * Ensures menu closes properly before scrolling to section
+   */
+  function initMenuNavigation() {
+    // Get references to menu elements
+    const navMenu = document.getElementById('nav-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    
+    // Enhanced menu closing function to coordinate with scrolling
+    function enhancedCloseNavMenu() {
+      navMenu.classList.remove('active');
+      
+      setTimeout(() => {
+        navMenu.style.display = 'none';
+      }, 500); // Match your animation duration
+    }
+    
+    // Process all navigation links in the menu
+    const navLinks = document.querySelectorAll('.navLinks');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        // Only handle section links (those containing a hash)
+        if (href.includes('#')) {
+          e.preventDefault();
+          
+          // Close menu first (visual priority)
+          enhancedCloseNavMenu();
+          
+          // Extract the target section ID and navigate after menu closes
+          const targetId = href.split('#')[1];
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            setTimeout(() => {
+              history.pushState(null, null, `#${targetId}`);
+              
+              targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 600); // Slightly longer than menu close animation
+          }
+        } else {
+          // For non-section links, just close the menu
+          enhancedCloseNavMenu();
+        }
+      });
+    });
+  }
+
+  // ===== 3. CROSS-PAGE NAVIGATION =====
+  /**
+   * Handles navigation from other pages to specific sections on index.html
+   * Uses localStorage to maintain the target across page loads
+   */
+  function initCrossPageNavigation() {
+    // Handle links from other pages to index.html sections
+    const externalLinks = document.querySelectorAll('a[href^="index.html#"]');
+    
+    externalLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetSection = this.getAttribute('href').split('#')[1];
+        
+        // If already on index.html, handle as internal navigation
+        if (window.location.pathname.includes('index')) {
+          e.preventDefault();
+          
+          const target = document.getElementById(targetSection);
+          if (target) {
+            history.pushState(null, null, `#${targetSection}`);
+            
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        } else {
+          // Store target for after navigation completes
+          localStorage.setItem('scrollTarget', targetSection);
+        }
+      });
+    });
+    
+    // Check for stored target when page loads
+    const scrollTarget = localStorage.getItem('scrollTarget');
+    if (scrollTarget) {
+      // Clear storage immediately to prevent future unwanted scrolls
+      localStorage.removeItem('scrollTarget');
+      
+      // Wait for page to load before scrolling
+      setTimeout(() => {
+        const targetElement = document.getElementById(scrollTarget);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 800);
+    }
+    
+    // Also handle direct hash in URL
+    else if (location.hash) {
+      setTimeout(() => {
+        const targetSection = document.querySelector(location.hash);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 800);
+    }
+  }
+
+  // ===== 4. BROWSER HISTORY NAVIGATION =====
+  /**
+   * Ensures proper scrolling when using browser back/forward buttons
+   */
+  function initHistoryNavigation() {
+    window.addEventListener('hashchange', function() {
+      if (location.hash) {
+        const targetSection = document.querySelector(location.hash);
+        if (targetSection) {
+          setTimeout(() => {
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }, 100);
+        }
+      }
+    });
+  }
+
+  // ===== 5. OPTIONAL SECTION INDICATORS =====
+  /**
+   * Adds visual indicator dots for section navigation
+   * Uncomment this function call below if you want this feature
+   */
+  function addSectionIndicators() {
+    const sections = document.querySelectorAll('section');
+    
+    // Only add indicators if we have multiple sections
+    if (sections.length <= 1) return;
+    
+    // Create indicator container
+    const indicatorContainer = document.createElement('div');
+    indicatorContainer.className = 'section-indicator';
+    
+    // Add a dot for each section
+    sections.forEach((section, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'section-dot';
+      dot.dataset.target = section.id;
+      
+      // Make dots clickable to navigate
+      dot.addEventListener('click', () => {
+        section.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+      
+      indicatorContainer.appendChild(dot);
+    });
+    
+    document.body.appendChild(indicatorContainer);
+    
+    // Update indicator based on scroll position
+    const updateIndicator = () => {
+      const scrollPosition = window.scrollY;
+      
+      sections.forEach((section, index) => {
+        const dot = indicatorContainer.children[index];
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        // Check if section is in view
+        if (
+          scrollPosition >= sectionTop - 200 &&
+          scrollPosition < sectionTop + sectionHeight - 200
+        ) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    };
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateIndicator);
+    
+    // Initial update
+    updateIndicator();
+  }
+
+  // ===== 6. UPDATE BUTTON EVENT HANDLERS =====
+  /**
+   * Updates any buttons with inline onclick handlers to use our improved navigation
+   */
+  function updateButtonHandlers() {
+    // Book your massage button
+    const bookingButton = document.getElementById('booking-button');
+    if (bookingButton) {
+      // Remove the inline onclick if it exists
+      bookingButton.removeAttribute('onclick');
+      
+      // Add class for our navigation system if it doesn't already have it
+      if (!bookingButton.classList.contains('section-link')) {
+        bookingButton.classList.add('section-link');
+      }
+    }
+    
+    // Explore treatments button
+    const exploreButton = document.getElementById('explore-button');
+    if (exploreButton) {
+      // Remove the inline onclick if it exists
+      exploreButton.removeAttribute('onclick');
+      
+      // Add class for our navigation system if it doesn't already have it
+      if (!exploreButton.classList.contains('section-link')) {
+        exploreButton.classList.add('section-link');
+      }
+    }
+  }
+
+  // ===== INITIALIZE ALL COMPONENTS =====
+  // Run all the initializers
+  initSectionNavigation();
+  initMenuNavigation();
+  initCrossPageNavigation();
+  initHistoryNavigation();
+  updateButtonHandlers();
+  
+  // Uncomment to enable section indicators
+  // addSectionIndicators();
+  
+
+
+  // Log that initialization is complete
+  console.log("Section navigation system initialized");
 });

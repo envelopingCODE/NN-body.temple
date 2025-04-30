@@ -442,24 +442,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
  <!-- HTML Structure for the buttons -->
- <a href="index.html#finisher" class="pathway-button booking-button" id="booking-button" 
- onclick="window.location.href='index.html#finisher'; setTimeout(function() { document.getElementById('finisher').scrollIntoView(); }, 500); return false;">
-<div class="button-content">
-  <span class="button-icon">📲</span>
-  <div class="button-text"> Book your massage</div>
-  <div class="button-shine"></div>
-</div>
-</a>
+ <a href="#finisher" class="pathway-button booking-button section-link" id="booking-button">
+    <div class="button-content">
+      <span class="button-icon">📲</span>
+      <div class="button-text">Book your massage</div>
+      <div class="button-shine"></div>
+    </div>
+  </a>
+  
 
-<a href="index.html#two" class="pathway-button explore-button" id="explore-button" 
- onclick="window.location.href='index.html#two'; setTimeout(function() { document.getElementById('two').scrollIntoView(); }, 500); return false;">
-<div class="button-content">
-  <span class="button-icon">💆🏼‍♂️</span>
-  <span class="button-text">Explore our treatments</span>
-  <div class="button-shine"></div>
-</div>
-</a>
 
+<!-- Replace your current "Explore treatments" button with this -->
+<a href="#two" class="pathway-button explore-button section-link" id="explore-button">
+    <div class="button-content">
+      <span class="button-icon">💆🏼‍♂️</span>
+      <span class="button-text">Explore our treatments</span>
+      <div class="button-shine"></div>
+    </div>
+  </a>
+  
+  
 <div id="arrow-container">
     <a href="#two" >
 
