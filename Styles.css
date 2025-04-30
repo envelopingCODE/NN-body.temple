@@ -45,7 +45,7 @@ body, html {
 /* Chapter 1: Setting the Stage */
 .handwritten {
     font-family: 'YourHandwrittenFont', cursive, serif; /* Added fallbacks */
-    font-size: 2.6em;
+    font-size: 2em;
     color: rgb(255, 255, 255);
     position: relative;
     display: inline-block;
@@ -910,6 +910,8 @@ button.arrow-down {
     justify-content: center;
     gap: 16px;
     padding: 16px;
+    
+    
 
 }
 
@@ -924,6 +926,7 @@ button.arrow-down {
     width: calc(100% - 32px); /* Full width on mobile */
     max-width: 600px; /* Max card width */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 100px;
 }
 
 .card:hover {
@@ -2381,7 +2384,7 @@ color: blue;
 }
 
 /* Show message only on screens wider than 820px */
-@media screen and (min-width: 820px) {
+@media screen and (min-width: 800px) {
     .desktop-message {
         display: flex;
         position: fixed;
