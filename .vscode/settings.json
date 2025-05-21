@@ -3,5 +3,8 @@
   "bg3ModHelper.rootModPath": "c:\\Users\\actor\\Documents\\Webdesign_projects\\Naturally_Nate\\NN - body temple",
   "bg3ModHelper.packingPriority": 0,
   "editor.defaultFormatter": null,
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

@@ -275,11 +275,11 @@ section {
 }
 
 #logo {
-    margin-top: -20px;
-    margin-left: -30px;
-max-height: 100px;
-scale: 1.6;
-    margin-bottom: 18px;
+    margin-left: -20px;
+max-height: 80px;
+scale: 1.25;
+margin-top: 7px;
+    margin-bottom: -px;
 }
 
 /* Styles for the hamburger menu */
