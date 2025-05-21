@@ -101,13 +101,7 @@ max-width:500px
 
 #three {
     margin-bottom: 16px;
-    background-image: url("pexels-sergey-torbik-42706484-7365398.webp");
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-position: 50% 50%;
-    background-size: 132%;
-   
+
     
 }
 
