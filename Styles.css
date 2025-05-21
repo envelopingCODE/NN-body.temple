@@ -101,7 +101,16 @@ max-width:500px
 
 #three {
     margin-bottom: 16px;
+    background-image: url("pexels-sergey-torbik-42706484-7365398.webp");
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-position: 50% 50%;
+    background-size: 132%;
+   
+    
 }
+
 
 .step-numbers {
     margin-top: 30px;
@@ -657,7 +666,7 @@ margin-top: 4px ;
 }
 
 #reviews-section {
-    background-image: url("pexels-monstera-production-6620855-1.webp");
+    background-image: url("photos/relaxing.webp");
     color: rgb(255, 255, 255);
     max-width: 600px;
     margin: auto;
