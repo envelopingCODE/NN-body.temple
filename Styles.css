@@ -518,7 +518,7 @@ font-size: 0.8em;
     background-image: url("photos/massage.retina.webp");
     background-size:cover;
     background-position:10%;
-    filter: brightness(0.7) blur(6px);
+    filter: brightness(1) saturate(1.2) blur(2px);
     z-index: -1;
 }
 
@@ -3827,3 +3827,62 @@ border-bottom: cyan;
   a[href^="#"]:focus {
     outline: none;
   }
+.scroller-content {
+  font-size: 6rem;
+  line-height: 6rem;
+  font-weight: 900;
+  display: inline-block;
+  letter-spacing: -3px;
+  animation: scroll-animation 16s linear infinite;
+}
+
+.uppercase {
+  font-variant: small-caps;
+}
+
+.scroll-scontainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* 🔧 Keyframes must be defined using @keyframes */
+@keyframes scroll-animation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-40.421%);
+  }
+}
+
+    @keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+.shimmer {
+	background: linear-gradient(90deg, #9a9b9e 25%, #2a2929 50%, #9a9b9e 75%);
+	background-size: 200% 100%;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: shimmer 3s linear infinite;
+	color: #818286; /* Fallback color */
+}
+
+:global(.dark) .shimmer {
+	background: linear-gradient(90deg, #818286 25%, #eae5e5 50%, #818286 75%);
+	background-size: 200% 100%;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: shimmer 4s linear infinite;
+	color: #a1a3a7; /* Darker fallback color for dark mode */
+}
+
