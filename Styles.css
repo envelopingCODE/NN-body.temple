@@ -71,9 +71,13 @@ body, html {
 display: flex;
 flex-direction:row;
 gap: 30px;
-margin-left: -20px;
 justify-content: space-evenly;
-max-width:500px
+background: #00000013;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    max-width:500px;
+    border-radius: 20px;
+    padding:6px;
 }
 
 .unit-container {
@@ -1529,6 +1533,8 @@ color: blue;
 
 #one .card {
     padding-bottom:10px;
+    background: #0000002d ;
+
 }
 
 
@@ -1537,7 +1543,7 @@ color: blue;
     width: 100%;
     max-width: 600px;
     margin: auto;
-    background: rgba(0, 0, 0, 0.161);
+    background: rgba(0, 0, 0, 0.198);
     border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
