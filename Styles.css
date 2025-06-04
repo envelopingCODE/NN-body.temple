@@ -599,7 +599,7 @@ margin-top: 4px ;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-position: 32% 50%;
+    background-position: 32% 90%;
     background-size: 120%;
 
    
@@ -3266,10 +3266,16 @@ border-bottom: cyan;
 
 /* Time / booking management */
 
+#finisher-slots {
+    margin-top: 00px;
+}
+
 .available-slots {
     width: 100%;
     padding: 8px;
     margin-top: 8px;
+        z-index: 999;
+
 }
 
 .slots-container {
@@ -3833,6 +3839,7 @@ border-bottom: cyan;
   a[href^="#"]:focus {
     outline: none;
   }
+
 .scroller-content {
   font-size: 6rem;
   line-height: 6rem;
@@ -3840,6 +3847,7 @@ border-bottom: cyan;
   display: inline-block;
   letter-spacing: -3px;
   animation: scroll-animation 16s linear infinite;
+  
 }
 
 .uppercase {
@@ -3851,6 +3859,7 @@ border-bottom: cyan;
   overflow: hidden;
   position: relative;
   white-space: nowrap;
+  margin-bottom: -200px;
 }
 
 /* 🔧 Keyframes must be defined using @keyframes */
