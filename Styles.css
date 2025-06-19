@@ -133,11 +133,15 @@ background: #00000013;
   margin:  auto;
 }
 
+
+
 .pathway-button {
   position: relative;
   overflow: hidden;
   padding: 10px 24px;
   border-radius: 12px;
+  min-width: 100px;
+  max-width: 500px;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* For Safari support */
@@ -146,7 +150,6 @@ background: #00000013;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  min-width:300px;
 }
 
 .pathway-button:hover {
@@ -697,7 +700,8 @@ margin-top: 4px ;
 
 #reviews-section h2 {
  text-align: center;    
- padding: 3%;
+ padding: 10px;
+ margin-top: 20px;
  text-shadow: #333333 0px 0.5px 3px;
 
 }
