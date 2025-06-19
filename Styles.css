@@ -1412,7 +1412,7 @@ color: blue;
     margin: 4rem auto;
     transform: rotate(90deg);
     animation: bounce 2.4s infinite;
-    margin-top: 0px;
+    margin-top: -6px;
 
 }
 
