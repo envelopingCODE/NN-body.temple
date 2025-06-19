@@ -119,19 +119,18 @@ background: #00000013;
 /* Pathway buttons */
 
 
-.pathway-buttons-container {
+#pathway-buttons-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-width: 300px;
-  margin: 24px auto;
+  margin:  auto;
 }
 
 .pathway-button {
   position: relative;
   overflow: hidden;
-  padding: 6px 14px;
+  padding: 10px 24px;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
@@ -1410,10 +1409,10 @@ color: blue;
     width: 40px; /* Fixed width */
     height: auto;
     position: relative;
-    margin: 1rem auto;
+    margin: 4rem auto;
     transform: rotate(90deg);
     animation: bounce 2.4s infinite;
-    margin-top: -25px;
+    margin-top: 5px;
 
 }
 
