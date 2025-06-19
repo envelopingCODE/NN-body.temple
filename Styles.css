@@ -164,6 +164,7 @@ background: #00000013;
   gap: 12px;
   position: relative;
   z-index: 1;
+  
       
 
 }
@@ -171,9 +172,18 @@ background: #00000013;
 .button-icon {
   font-size: 24px;
   text-decoration: none;
-
+  
   
 }
+
+.button-icon img {
+
+  max-width: 20px;
+  max-height: 40px;
+  filter: invert();
+
+}
+
 
 .button-text {
     font-size: 17px;
