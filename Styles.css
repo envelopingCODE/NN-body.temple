@@ -114,7 +114,13 @@ background: #00000013;
     margin-top: 30px;
 }
 
+.submit {
+    padding-top: 25px;
+}
 
+.review-section-heading {
+    padding-top:20px;
+}
 
 /* Pathway buttons */
 
