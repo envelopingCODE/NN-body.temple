@@ -1413,13 +1413,15 @@ color: blue;
   .arrow-container {
     display: flex;
     flex-direction: row;
+    align-content: center;
   }
 
   .arrow {
     width: 40px; /* Fixed width */
     height: auto;
     position: relative;
-    margin: 4rem auto;
+    margin: auto;
+    margin-left: 14px;
     transform: rotate(90deg);
     animation: bounce 2.4s infinite;
     margin-top: -6px;
