@@ -6,9 +6,9 @@
 // - Individual times: "15, 16:30, 17"
 // - Mix both: "15-17, 18:30"
 const AVAILABLE_SLOTS = [
-  "18.06 15:30-19",            // One specific time + range
-  "20.06 14:30-18",
-  "21.06 13-16:30"             // Range + specific time
+  "07.11 15:30-18",            // One specific time + range
+  "08.11 14:00-16",
+  "10.11 14-18:30"             // Range + specific time
 ];
 
 // ===== END OF CONFIGURATION =====
