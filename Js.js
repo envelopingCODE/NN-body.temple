@@ -8,7 +8,12 @@
 const AVAILABLE_SLOTS = [
   "07.11 15:30-18",            // One specific time + range
   "08.11 14:00-16",
-  "10.11 14-18:30"             // Range + specific time
+  "10.11 14-18:30",             // Range + specific time
+  "11.11 14-18:30",
+  "12.11 14:30-19:00",
+  "13.11 14-18:30",
+  "14.11 14-18:30"      
+
 ];
 
 // ===== END OF CONFIGURATION =====
